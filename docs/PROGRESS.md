@@ -6,8 +6,8 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | --- | --- | --- | --- | --- |
 | 01 | Skeleton and design system | in review | [#1](https://github.com/OlegDev1/second-brain-guide/pull/1) | Site shell, design system, stubs for every slug. |
 | 02 | Git and GitHub | in review | [#3](https://github.com/OlegDev1/second-brain-guide/pull/3) | Reference chapter 05, CommitGraph, STYLE.md reference decisions. |
-| 03 | How Claude works | not started | — | |
-| 04 | Method | not started | — | |
+| 03 | How Claude works | in review | [#6](https://github.com/OlegDev1/second-brain-guide/pull/6) | Chapters 01 and 09, TokenCalculator, notes with sources. |
+| 04 | Method | in review | [#5](https://github.com/OlegDev1/second-brain-guide/pull/5) | Chapters 02 and 07, ProjectDiagram, «Выбери за меня» transcript, roles table. |
 | 05 | Specs, files, prompt | in review | [#8](https://github.com/OlegDev1/second-brain-guide/pull/8) | Chapters 03, 04, 15, RepoTree; cloud threads don't load repo skills (see notes). |
 | 06 | App architecture | not started | — | |
 | 07 | Quality, deploy, security | not started | — | |

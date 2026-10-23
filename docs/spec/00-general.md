@@ -92,10 +92,13 @@ Part 01 seeds the glossary tooltips from this table. New terms go into your note
 - One part = one thread = one branch = one PR. Edit only the files your part owns. The single exception is part 10, which may align terminology and fix links in every chapter (see its part file).
 - Before the PR: `npm run build` and `npm run check` pass; paste their summary lines. No test files, no CI, never touch the GitHub Pages deploy setup.
 - Commit and push work in progress regularly.
-- After the PR, two separate threads check it, and neither fixes anything. Check threads read only this file, the part's notes file and the pages they check.
-  - **Fact-check (Sonnet):** checks every row of your Sources table — opens the saved URL and confirms it supports the claim; searches anew only when a link is dead or doesn't support it. Writes `docs/reviews/NN-<slug>.md`.
-  - **Quick look (Haiku):** runs the site locally, opens the new pages at about 360 px and 1440 px wide, light and dark theme, and lists visible problems. Saves PNG screenshots to `docs/reviews/screens/NN/` so the owner can see them on GitHub without a deploy. Writes no tests. Appends to the same review file. If no browser is available, it says so and stops.
-- **Wave gate.** Checks run right after each wave, before the next one starts. A wave is closed only when both checks are done, every open item is fixed and the owner has merged the PRs. An error left in one wave travels into the next.
+- **Writer:** one thread on Opus, high effort. It writes the part and opens the PR. Once the PR is open, the writer thread is closed and gets no more messages.
+- **Reviewer:** after the PR, one separate thread on Sonnet, high effort, reviews it. It reads only this file, the part's notes file and the pages it checks. No Haiku review, no extra tests, no deep analysis.
+  - **Fact-check:** goes through your Sources table — opens each saved URL and confirms it supports the claim; searches anew only when a link is dead or doesn't support it.
+  - **Frontend skim:** runs the site locally and quickly looks at the new pages at about 360 px and 1440 px wide, light and dark theme, for layout bugs. If no browser is available, it says so and skips this step.
+  - It fixes what it finds, settles open items with its own judgment, and writes a short `docs/reviews/NN-<slug>.md` (what was checked, what was fixed).
+  - When `npm run build` and `npm run check` pass, it merges the PR. This is the only case where a thread merges into `main`.
+- **Wave gate.** A wave is closed only when every PR in it is merged by its reviewer after a passing build and check. An error left in one wave travels into the next.
 - Missing access, fact or decision: say exactly what is missing and stop. Never invent.
 
 ## Source materials in the project Library
