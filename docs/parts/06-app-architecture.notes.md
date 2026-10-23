@@ -36,6 +36,7 @@ All rows checked on 2026-10-23. Anchors: `06` = `/guide/06-sync`, `10` = `/guide
 | Browser storage lives on the local disk of the device | 06#data-on-phone | https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria | 2026-10-23 | Intro: "store data in the user's browser (i.e., on the local disk" |
 | Default storage is best-effort; `navigator.storage.persist()` requests persistent storage | 06#data-on-phone (Deeper) | https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria | 2026-10-23 | "Does browser-stored data persist?": "Best-effort: this is the way that data is stored by default." |
 | Safari: no user interaction in 7 days → script-created data deleted (with tracking prevention on) | 06#data-on-phone (Deeper) | https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria | 2026-10-23 | "Proactive eviction": "no user interaction, such as click or tap, in the last seven days" |
+| Safari home-screen web apps count days of use separately from Safari | 06#data-on-phone (Deeper) | https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/ | 2026-10-23 | "have their own counter of days of use" |
 
 ### Frameworks and stack
 
@@ -198,6 +199,7 @@ react-dom 19.3.1, svelte 5.57.2, solid-js 1.9.17, lit 3.3.3. Measured 2026-10-23
 
 ## Open questions
 
-- Safari's 7-day eviction: MDN does not say whether installed home-screen web apps are exempt, so the
-  chapter states only the general rule. The friend uses Android, so this is a side note.
+- Safari's 7-day eviction (settled in review): WebKit says home-screen web apps "have their own counter of days of use", so
+  the Safari rule is counted separately for them (https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/).
+  Chapter 06 now says this. The friend uses Android, so it stays a side note.
 - Framework "ecosystem" and "help for the agent" cells are judgments; only the MCP/llms.txt part is sourced.
