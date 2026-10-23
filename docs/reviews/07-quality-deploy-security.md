@@ -31,4 +31,4 @@ Opened and confirmed:
 - The hosting-table row «Чем хорош» is a short judgment call from the writer, as the notes say.
 - The deploy stepper describes a workflow that doesn't exist in the repo yet; the owner adds it when deploying (open question in the notes, left as is).
 - The APK build could not run here; the chapter correctly sends it to Android Studio.
-- Other chapters have the same "paragraph starts with `<Term>`" pattern: `07-agent-team` line 55 shows a raw Markdown link (`[Anthropic](…)`) and several paragraphs in chapters 01, 02, 03, 05 and 07 lose their `<p>` wrapper. Not part 07's files; part 10 should fix them (start the paragraph with text or fix the component).
+- Other chapters use the same "paragraph starts with `<Term>`" pattern. In `07-agent-team` (line 55) it shows a raw Markdown link (`[Anthropic](…)`); it is the only other raw link on the built site. Other such paragraphs probably lose their `<p>` wrapper too (not checked). Not part 07's files; part 10 should fix them by starting the paragraph with text.
