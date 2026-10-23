@@ -1,0 +1,26 @@
+// Generic components. Chapters get these without an import (see config/markdown.js).
+export { default as Accordion } from './Accordion.svelte';
+export { default as After } from './After.svelte';
+export { default as Before } from './Before.svelte';
+export { default as BeforeAfter } from './BeforeAfter.svelte';
+export { default as Callout } from './Callout.svelte';
+export { default as Card } from './Card.svelte';
+export { default as ChatTranscript } from './ChatTranscript.svelte';
+export { default as Checklist } from './Checklist.svelte';
+export { default as Chip } from './Chip.svelte';
+export { default as CodeBlock } from './CodeBlock.svelte';
+export { default as CompareTable } from './CompareTable.svelte';
+export { default as Deeper } from './Deeper.svelte';
+export { default as DiagramFrame } from './DiagramFrame.svelte';
+export { default as Glossary } from './Glossary.svelte';
+export { default as LessonHeader } from './LessonHeader.svelte';
+export { default as LevelBadge } from './LevelBadge.svelte';
+export { default as Msg } from './Msg.svelte';
+export { default as PhraseCard } from './PhraseCard.svelte';
+export { default as Step } from './Step.svelte';
+export { default as Steps } from './Steps.svelte';
+export { default as Tab } from './Tab.svelte';
+export { default as Tabs } from './Tabs.svelte';
+export { default as Takeaways } from './Takeaways.svelte';
+export { default as Term } from './Term.svelte';
+export { default as TLDR } from './TLDR.svelte';
