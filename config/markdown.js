@@ -40,6 +40,8 @@ function walk(node, fn, parent = null) {
 }
 
 function textOf(node) {
+	// Inline components such as <Term id="cache">кэш</Term> are `html` nodes: keep their text, drop the tags.
+	if (node.type === 'html') return '';
 	if (typeof node.value === 'string') return node.value;
 	return (node.children ?? []).map(textOf).join('');
 }
@@ -95,10 +97,21 @@ export function withBase(base, href) {
 	return `${base}${path}${rest}`;
 }
 
+/** Hand-written `<a href="/…">` in Markdown arrives as a raw node; give it the base path too. */
+function withBaseInRawLinks(html, base) {
+	return html.replace(/<a\s[^>]*>/g, (tag) =>
+		tag.replace(/(\bhref=)(["'])(\/(?!\/)[^"']*)\2/, (_, name, quote, url) => `${name}${quote}${withBase(base, url)}${quote}`)
+	);
+}
+
 /** Makes root-relative links base-aware and wraps tables so they scroll on a phone. */
 export function rehypeSite({ base }) {
 	return () => (tree) => {
 		walk(tree, (node, parent) => {
+			if (node.type === 'raw' && typeof node.value === 'string' && node.value.includes('<a')) {
+				node.value = withBaseInRawLinks(node.value, base);
+				return;
+			}
 			if (node.type !== 'element') return;
 			if (node.tagName === 'a') {
 				const href = node.properties?.href;

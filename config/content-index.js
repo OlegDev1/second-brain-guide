@@ -9,6 +9,15 @@ const RESOLVED = '\0' + ID;
 const SECTIONS = ['guide', 'advanced', 'ref'];
 const LEVELS = ['basic', 'advanced'];
 
+/** Reading time in minutes: a number, or a string that starts with one ("15", "15 мин"). */
+function minutes(path, value) {
+	if (value == null) return undefined;
+	if (typeof value === 'number') return value;
+	const match = typeof value === 'string' ? value.match(/^\s*(\d+)/) : null;
+	if (!match) throw new Error(`${path}: time must be a number of minutes, got ${JSON.stringify(value)}`);
+	return Number(match[1]);
+}
+
 function read(root) {
 	const chapters = [];
 	for (const section of SECTIONS) {
@@ -37,7 +46,7 @@ function read(root) {
 				short: fm.short ? String(fm.short) : undefined,
 				part: fm.part != null ? String(fm.part) : undefined,
 				order: fm.order,
-				time: typeof fm.time === 'number' ? fm.time : undefined,
+				time: minutes(path, fm.time),
 				level: fm.level ?? (section === 'advanced' ? 'advanced' : 'basic'),
 				prereqs: Array.isArray(fm.prereqs) ? fm.prereqs.map(String) : [],
 				updated: fm.updated ? String(fm.updated) : undefined,
