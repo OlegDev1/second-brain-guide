@@ -243,6 +243,7 @@ h4 {
 	margin: 0;
 	line-height: 1.25;
 	text-wrap: balance;
+	overflow-wrap: anywhere;
 }
 
 h1,
