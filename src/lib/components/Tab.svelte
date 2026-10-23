@@ -31,11 +31,11 @@
 		margin-top: 0;
 	}
 
-	.panel :global(> * + *) {
-		margin-top: 0.75rem;
+	.panel :global(:where(p)) {
+		margin: 0;
 	}
 
-	.panel :global(p) {
-		margin: 0;
+	.panel :global(> * + *) {
+		margin-top: 0.75rem;
 	}
 </style>

@@ -34,7 +34,7 @@
 		font-weight: 500;
 	}
 
-	.body :global(p) {
+	.body :global(:where(p)) {
 		margin: 0;
 	}
 

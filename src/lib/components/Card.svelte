@@ -86,11 +86,11 @@
 		font-size: var(--text-small);
 	}
 
-	.content :global(> * + *) {
-		margin-top: 0.5rem;
+	.content :global(:where(p)) {
+		margin: 0;
 	}
 
-	.content :global(p) {
-		margin: 0;
+	.content :global(> * + *) {
+		margin-top: 0.5rem;
 	}
 </style>

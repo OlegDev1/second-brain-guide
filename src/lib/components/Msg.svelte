@@ -81,7 +81,7 @@
 		font-size: var(--text-small);
 	}
 
-	.text :global(p) {
+	.text :global(:where(p)) {
 		margin: 0;
 	}
 

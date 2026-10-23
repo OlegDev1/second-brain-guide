@@ -46,6 +46,7 @@ All rows checked on 2026-10-23. Anchors point to `/guide/05-git-github`.
 | Blame shows line-by-line revision history with author, description and date per commit | #history | https://docs.github.com/en/repositories/working-with-files/using-files/viewing-and-understanding-files | 2026-10-23 | Section "Blame view": "line-by-line revision history" |
 | Compare view compares branches, tags and commits; base is the start, compare is the end | #history | https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/comparing-commits | 2026-10-23 | "The compare page uses base as the starting point" |
 | A file's history shows commits that touched the file; the repository's commits page shows branch history | #history | https://docs.github.com/en/pull-requests/committing-changes-to-your-project/viewing-and-comparing-commits/differences-between-commit-views | 2026-10-23 | "A file's history shows commits that affected that file" |
+| `git reset --hard` overwrites uncommitted changes in the working tree | #reset | https://git-scm.com/docs/git-reset | 2026-10-23 | DESCRIPTION: "Overwrite all files and directories with the version from <commit>" |
 | Activity view lists pushes, merges, force pushes, branch changes | #reset | https://docs.github.com/en/repositories/viewing-activity-and-data-for-your-repository/using-the-activity-view-to-see-changes-to-a-repository | 2026-10-23 | "such as pushes, merges, force pushes, and branch changes" |
 | Releases are based on Git tags; GitHub adds zip and tarball downloads of the tagged state | #releases | https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases | 2026-10-23 | "links to download a zip file and a tarball" |
 | Create a release: Releases → Draft a new release → Choose a tag / Create new tag → Publish release | #releases | https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository | 2026-10-23 | "To the right of the list of files, click Releases." |
@@ -104,8 +105,9 @@ For part 10 to add to the glossary. Terms already in `src/lib/glossary.ts` are n
 
 | Title | Phrase | When | Chapter#anchor |
 | --- | --- | --- | --- |
-| Правило для инструкций проекта | Никогда не пушь в main напрямую и никогда не делай force push. Любое изменение — только через PR в новой ветке. Не мерджи без моего OK. | Project settings → Memory → Project instructions | #protected-main |
+| Правило для инструкций проекта | Никогда не пушь в main напрямую и никогда не делай force push. Любое изменение — только через PR в новой ветке. Не мерджи без моего OK. | Один раз, при настройке проекта | #protected-main |
 | Откатить PR | Откати PR #3 через revert в новой ветке и открой PR. Ничего не форсь. | Влитый PR что-то сломал | #revert-pr |
+| Посмотреть старую версию | Создай ветку от коммита ac97c1d, чтобы я мог посмотреть проект таким, как тогда. В main ничего не меняй. | Хочешь увидеть, как было раньше, и ничего не ломать | #old-version |
 | Вернуть один файл | Верни файл src/timer.js к версии из коммита ac97c1d отдельным коммитом в новой ветке и открой PR. | Сломан один файл, остальные изменения нужны | #restore-file |
 | Безопасный откат | Откати изменения после abc1234 через revert в новой ветке, открой PR, ничего не форсь. | Что-то сломалось, и ты знаешь последний хороший коммит | #ask-agent |
 | Разрешить конфликт (inline) | Разреши конфликт с main. | У PR потока конфликт | #conflict |
@@ -126,6 +128,8 @@ For part 10 to add to the glossary. Terms already in `src/lib/glossary.ts` are n
 | A key or password was committed | Secret in history | Revoke and rotate the key first; clean history second (`/guide/13-security`). |
 
 ## Open questions
+
+Resolved by the owner's delegation on review: the voice is accepted as written; on the paid plan the chapter keeps the project-instructions rule and names no price; the `Deeper`/`Step`/other component paragraph gap and the code-block title cut-off were fixed in the review commits.
 
 1. The part file says "Repository; private by default". GitHub's docs don't say which visibility the create page selects by default, so the chapter tells the reader to choose **Private** instead of claiming it is the default.
 2. On GitHub Free, branch protection and rulesets work only in public repositories. If the friend keeps the repository private on Free, `main` is protected only by the project-instructions rule (cloud threads' GitHub proxy doesn't limit which branches they push to). The chapter says so; the owner may want the guide to recommend a paid GitHub plan. No price is given because none was sourced.

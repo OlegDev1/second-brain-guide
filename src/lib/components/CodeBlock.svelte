@@ -97,11 +97,10 @@
 	}
 
 	.label {
-		overflow: hidden;
+		padding-block: 0.4rem;
 		color: var(--muted);
 		font-size: var(--text-xs);
-		white-space: nowrap;
-		text-overflow: ellipsis;
+		overflow-wrap: anywhere;
 	}
 
 	.label.file {
