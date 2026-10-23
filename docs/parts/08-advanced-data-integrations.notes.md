@@ -234,9 +234,12 @@ Dexie queries) are illustrations and were not run; the build only checks that th
 
 ## Open questions
 
-- Is `web-push` (Node.js library) usable in a Cloudflare Worker? Not stated in its README; A2 tells the reader to check.
-- Do Todoist API v1 and Open-Meteo allow browser CORS calls? Not verified; A2 marks Todoist "Проверь CORS".
-- The GitHub Pages "no custom headers" statement comes from community discussions, not GitHub Docs; the role of the 2024 answer's author is not shown.
-- Zero 1.0 date: docs say GA "as of March 2026"; a non-official source gives June 2026. A1 states only "с марта 2026 года" per the docs.
-- Spotify Web Playback SDK and Health Connect plugins were checked only from their pages, not run.
-- Code sketches were not executed against live APIs (no keys in this environment).
+Settled by the reviewer on 2026-10-23 (see `docs/reviews/08-advanced-data-integrations.md`):
+
+- `web-push` in a Worker: left as is. The chapter tells the reader to check, which is the honest state.
+- Todoist API v1 and Open-Meteo CORS: left as is. A2 marks Todoist "Проверь CORS"; no claim is made.
+- GitHub Pages "no custom headers": two GitHub community answers agree; kept, `opfs-sahpool` is the advice either way.
+- Zero 1.0 date: A1 now says only "общедоступен с марта 2026 года", as the official status page does.
+- Spotify Premium: the source says "Development Mode use will require a Spotify Premium account" without naming the owner, so A2 no longer says "владельцу".
+- Spotify Web Playback SDK and Health Connect plugins: checked from pages only, not run. Accepted.
+- Code sketches not run against live APIs (no keys here). Accepted; stated in the PR.
