@@ -73,6 +73,7 @@ All rows checked on 2026-10-23. Anchors: `01#…` is `/guide/01-how-agents-work`
 
 ### Tokens, limits, practices (chapter 09)
 | One-thread example: 60 steps × 75k average = 4.5M read; × 0.1575 ≈ 0.7M plain; same steps at 300k ≥ 18M | 09#one-thread | Our arithmetic; the step count and context sizes are a labelled assumption | 2026-10-23 | 60 × 75,000 = 4,500,000; 4.5M × 0.1575 = 708,750; 60 × 300,000 = 18,000,000 |
+| Quadratic growth of a long chat: k = 3,000 tokens per message; 100 messages ≈ 15M, 200 ≈ 60M | 09#long-chat (Deeper) | Our arithmetic; k is a labelled assumption | 2026-10-23 | 3,000 × 100 × 101 / 2 = 15,150,000; 3,000 × 200 × 201 / 2 = 60,300,000 |
 | Pause example in the chapter: 1M / 80k = 12.5; 1.6M / 80k = 20 → "в 12–20 раз дороже" | 09#prices | Our arithmetic | 2026-10-23 | — |
 | Output price is 5× input for Opus 5.5 ($4 / $20 per MTok) and Sonnet 5.5 ($2 / $10) | 09#not-counted | https://platform.claude.com/docs/en/about-claude/pricing | 2026-10-23 | Model pricing table |
 | Thinking tokens are billed as output; default thinking budget can be tens of thousands of tokens per request; thinking can't be turned off on Opus 5.5 / Sonnet 5.5; lower the effort level | 09#not-counted | https://code.claude.com/docs/en/costs | 2026-10-23 | Section "Adjust extended thinking": "Thinking tokens are billed as output tokens" |
