@@ -12,5 +12,5 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | 06 | App architecture | in review | — | Chapters 06, 10 and 11, two inline SVG diagrams, framework and notification tables, notes with sources and measured bundle sizes. |
 | 07 | Quality, deploy, security | done | [#9](https://github.com/OlegDev1/second-brain-guide/pull/9) | Chapters 08, 12 and 13; tests and Capacitor commands run in a scratch folder; deploy stepper follows the SvelteKit Pages example (no workflow in the repo yet). |
 | 08 | Advanced: data and integrations | in review | [#10](https://github.com/OlegDev1/second-brain-guide/pull/10) | A1 local-first, A2 integrations catalog with voice-inbox example, A5 performance. |
-| 09 | Advanced: tooling | not started | — | |
-| 10 | Reference and wrap-up | not started | — | |
+| 09 | Advanced: tooling | in review | — | Short version: A3 (aligned with chapter 04 cloud table), A4, A6 with TokenCalculator, A7. Same PR as part 10. |
+| 10 | Reference and wrap-up | in review | — | Short version: ref pages, glossary with chapter links, 00, 14, home roadmap; Term-paragraph fix in 6 chapters. |
