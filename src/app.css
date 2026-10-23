@@ -1,0 +1,523 @@
+/*
+ * Design tokens and base styles. Every colour on the site comes from here.
+ * Dark is the default; light applies under [data-theme="light"] and under
+ * [data-theme="system"] when the OS prefers light. Final values: docs/DECISIONS.md.
+ */
+
+/* ---------- Fonts: self-hosted, Cyrillic + Latin subsets ---------- */
+
+@font-face {
+	font-family: 'Golos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 900;
+	src: url('./lib/fonts/golos-text-cyrillic-wght-normal.woff2') format('woff2');
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: 'Golos Text';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 400 900;
+	src: url('./lib/fonts/golos-text-latin-wght-normal.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'Unbounded';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 900;
+	src: url('./lib/fonts/unbounded-cyrillic-wght-normal.woff2') format('woff2');
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: 'Unbounded';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 200 900;
+	src: url('./lib/fonts/unbounded-latin-wght-normal.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+	font-family: 'JetBrains Mono';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 800;
+	src: url('./lib/fonts/jetbrains-mono-cyrillic-wght-normal.woff2') format('woff2');
+	unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+	font-family: 'JetBrains Mono';
+	font-style: normal;
+	font-display: swap;
+	font-weight: 100 800;
+	src: url('./lib/fonts/jetbrains-mono-latin-wght-normal.woff2') format('woff2');
+	unicode-range:
+		U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+		U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ---------- Tokens ---------- */
+
+:root,
+[data-theme='dark'] {
+	color-scheme: dark;
+
+	/* Surfaces and text */
+	--bg: #0b1220;
+	--surface: #111a2c;
+	--sunk: #0e1626;
+	--line: #19253b;
+	--line-strong: #2a3550;
+	--ink: #e6e9f1;
+	--muted: #94a3b8;
+	--accent: #3b82f6;
+	--accent-ink: #6ea8fe;
+	--accent-soft: #10233f;
+	--on-accent: #ffffff;
+	--mark: rgba(255, 212, 56, 0.34);
+	--focus: #6ea8fe;
+	--scrim: rgba(3, 7, 15, 0.62);
+
+	/* Meaning colours: stroke / tinted fill / text on tint */
+	--blue: #3b82f6;
+	--blue-soft: #10233f;
+	--blue-ink: #7db3ff;
+	--violet: #8b5cf6;
+	--violet-soft: #1c1838;
+	--violet-ink: #b39dfb;
+	--amber: #f59e0b;
+	--amber-soft: #2a1d06;
+	--amber-ink: #f8b84a;
+	--green: #22c55e;
+	--green-soft: #0d2a1a;
+	--green-ink: #4ade80;
+	--red: #ef4444;
+	--red-soft: #2a1010;
+	--red-ink: #f87171;
+
+	--shadow-sheet: 0 -8px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme='light'] {
+	color-scheme: light;
+
+	--bg: #f3f4f8;
+	--surface: #ffffff;
+	--sunk: #eaedf5;
+	--line: #d6dae5;
+	--line-strong: #b9c0d0;
+	--ink: #19202d;
+	--muted: #5b6476;
+	--accent: #2d47d4;
+	--accent-ink: #2d47d4;
+	--accent-soft: #e3e8fc;
+	--on-accent: #ffffff;
+	--mark: #ffe15a;
+	--focus: #2d47d4;
+	--scrim: rgba(25, 32, 45, 0.38);
+
+	--blue: #2563eb;
+	--blue-soft: #e6eefe;
+	--blue-ink: #1d4ed8;
+	--violet: #7c3aed;
+	--violet-soft: #f0ebfe;
+	--violet-ink: #6d28d9;
+	--amber: #d97706;
+	--amber-soft: #fef3dc;
+	--amber-ink: #92400e;
+	--green: #16a34a;
+	--green-soft: #e3f5ea;
+	--green-ink: #166534;
+	--red: #dc2626;
+	--red-soft: #fde8e8;
+	--red-ink: #b91c1c;
+
+	--shadow-sheet: 0 -8px 24px rgba(25, 32, 45, 0.12);
+}
+
+@media (prefers-color-scheme: light) {
+	:root[data-theme='system'] {
+		color-scheme: light;
+
+		--bg: #f3f4f8;
+		--surface: #ffffff;
+		--sunk: #eaedf5;
+		--line: #d6dae5;
+		--line-strong: #b9c0d0;
+		--ink: #19202d;
+		--muted: #5b6476;
+		--accent: #2d47d4;
+		--accent-ink: #2d47d4;
+		--accent-soft: #e3e8fc;
+		--on-accent: #ffffff;
+		--mark: #ffe15a;
+		--focus: #2d47d4;
+		--scrim: rgba(25, 32, 45, 0.38);
+
+		--blue: #2563eb;
+		--blue-soft: #e6eefe;
+		--blue-ink: #1d4ed8;
+		--violet: #7c3aed;
+		--violet-soft: #f0ebfe;
+		--violet-ink: #6d28d9;
+		--amber: #d97706;
+		--amber-soft: #fef3dc;
+		--amber-ink: #92400e;
+		--green: #16a34a;
+		--green-soft: #e3f5ea;
+		--green-ink: #166534;
+		--red: #dc2626;
+		--red-soft: #fde8e8;
+		--red-ink: #b91c1c;
+
+		--shadow-sheet: 0 -8px 24px rgba(25, 32, 45, 0.12);
+	}
+}
+
+:root {
+	--font-body: 'Golos Text', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+	--font-head: 'Unbounded', 'Golos Text', system-ui, sans-serif;
+	--font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+	--text-body: 1.0625rem; /* 17 px */
+	--text-small: 0.9375rem;
+	--text-xs: 0.8125rem;
+	--leading: 1.6;
+
+	--radius: 10px;
+	--radius-lg: 14px;
+	--bar-h: 2.75rem; /* 44 px */
+	--content-max: 44rem;
+	--gutter: 1rem;
+	--tap: 2.75rem;
+
+	--ease: cubic-bezier(0.2, 0, 0, 1);
+	--dur: 200ms;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	scroll-padding-top: calc(var(--bar-h) + 1rem);
+}
+
+html:has(dialog[open]) {
+	overflow: hidden;
+}
+
+body {
+	margin: 0;
+	background: var(--bg);
+	color: var(--ink);
+	font-family: var(--font-body);
+	font-size: var(--text-body);
+	line-height: var(--leading);
+	font-kerning: normal;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* A nested theme scope (used on /design) re-applies its own colours. */
+[data-theme] [data-theme] {
+	background: var(--bg);
+	color: var(--ink);
+}
+
+h1,
+h2,
+h3,
+h4 {
+	margin: 0;
+	line-height: 1.25;
+	text-wrap: balance;
+}
+
+h1,
+h2 {
+	font-family: var(--font-head);
+	font-weight: 600;
+	letter-spacing: -0.01em;
+}
+
+h3,
+h4 {
+	font-family: var(--font-body);
+	font-weight: 650;
+}
+
+a {
+	color: var(--accent-ink);
+	text-decoration-thickness: 1px;
+	text-underline-offset: 0.18em;
+}
+
+a:hover {
+	text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+	border-radius: 4px;
+}
+
+::selection {
+	background: var(--mark);
+	color: inherit;
+}
+
+mark {
+	background: var(--mark);
+	color: inherit;
+	border-radius: 3px;
+	padding: 0 0.1em;
+}
+
+button {
+	font: inherit;
+	color: inherit;
+}
+
+img,
+svg {
+	max-width: 100%;
+}
+
+code,
+kbd,
+pre,
+samp {
+	font-family: var(--font-mono);
+	font-size: 0.875em;
+}
+
+.visually-hidden {
+	position: absolute !important;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+	border: 0;
+}
+
+/* ---------- Chapter text ---------- */
+
+.prose {
+	overflow-wrap: break-word;
+}
+
+.prose > * + * {
+	margin-top: 1rem;
+}
+
+.prose p,
+.prose ul,
+.prose ol,
+.prose blockquote {
+	margin: 0;
+}
+
+.prose * + p,
+.prose * + ul,
+.prose * + ol,
+.prose * + blockquote {
+	margin-top: 1rem;
+}
+
+.prose h2,
+.prose h3 {
+	scroll-margin-top: calc(var(--bar-h) + 1rem);
+}
+
+.prose h2 {
+	margin-top: 3rem;
+	font-size: 1.375rem;
+}
+
+.prose h3 {
+	margin-top: 2rem;
+	font-size: 1.1875rem;
+}
+
+.prose h2 + *,
+.prose h3 + * {
+	margin-top: 0.75rem;
+}
+
+.prose strong {
+	font-weight: 650;
+}
+
+.prose ul,
+.prose ol {
+	padding-left: 1.4rem;
+}
+
+.prose li + li {
+	margin-top: 0.35rem;
+}
+
+.prose li::marker {
+	color: var(--muted);
+}
+
+.prose blockquote {
+	padding: 0.25rem 0 0.25rem 1rem;
+	border-left: 3px solid var(--line-strong);
+	color: var(--muted);
+}
+
+.prose hr {
+	border: 0;
+	border-top: 1px solid var(--line);
+	margin: 2.5rem 0;
+}
+
+.prose :not(pre) > code {
+	padding: 0.1em 0.35em;
+	border-radius: 6px;
+	background: var(--sunk);
+	border: 1px solid var(--line);
+	white-space: break-spaces;
+}
+
+.table-scroll {
+	overflow-x: auto;
+	border: 1px solid var(--line);
+	border-radius: var(--radius);
+	background: var(--surface);
+}
+
+.table-scroll table {
+	width: 100%;
+	min-width: 32rem;
+	border-collapse: collapse;
+	font-size: var(--text-small);
+}
+
+.table-scroll th,
+.table-scroll td {
+	padding: 0.6rem 0.8rem;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid var(--line);
+}
+
+.table-scroll th {
+	background: var(--sunk);
+	font-weight: 650;
+}
+
+.table-scroll tr:last-child td {
+	border-bottom: 0;
+}
+
+/* ---------- Code (Shiki, both themes in one pass) ---------- */
+
+.shiki {
+	margin: 0;
+	padding: 0.9rem 1rem;
+	overflow-x: auto;
+	background: var(--sunk) !important;
+	font-size: 0.875rem;
+	line-height: 1.6;
+	tab-size: 2;
+}
+
+.shiki span {
+	color: light-dark(var(--shiki-light), var(--shiki-dark));
+}
+
+/* ---------- Diagrams: inline SVG inside <DiagramFrame> ---------- */
+
+.diagram svg {
+	display: block;
+	width: 100%;
+	height: auto;
+	font-family: var(--font-body);
+}
+
+.diagram .node {
+	stroke-width: 1.5;
+	rx: 10;
+}
+
+.diagram .node.blue {
+	fill: var(--blue-soft);
+	stroke: var(--blue);
+}
+.diagram .node.violet {
+	fill: var(--violet-soft);
+	stroke: var(--violet);
+}
+.diagram .node.amber {
+	fill: var(--amber-soft);
+	stroke: var(--amber);
+}
+.diagram .node.green {
+	fill: var(--green-soft);
+	stroke: var(--green);
+}
+.diagram .node.red {
+	fill: var(--red-soft);
+	stroke: var(--red);
+}
+.diagram .node.neutral {
+	fill: var(--surface);
+	stroke: var(--line-strong);
+}
+
+.diagram .label {
+	fill: var(--ink);
+	font-size: 14px;
+	font-weight: 550;
+}
+
+.diagram .label.small {
+	fill: var(--muted);
+	font-size: 12px;
+	font-weight: 400;
+}
+
+.diagram .arrow {
+	fill: none;
+	stroke: var(--muted);
+	stroke-width: 1.5;
+}
+
+.diagram .arrow.dashed {
+	stroke-dasharray: 5 4;
+}
+
+.diagram .arrowhead {
+	fill: var(--muted);
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+		scroll-behavior: auto !important;
+	}
+}
