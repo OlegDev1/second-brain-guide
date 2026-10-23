@@ -23,12 +23,11 @@ Ten parts. One part = one thread = one branch = one PR. At most two threads at o
 
 A **gate** closes a wave. The next wave starts only when, for every part in the wave:
 
-1. the PR is open and `npm run build` / `npm run check` pass;
-2. the fact-check (Sonnet) and the quick look (Haiku) have written `docs/reviews/NN-<slug>.md`;
-3. every open item in that review is fixed;
-4. the owner has merged the PR.
+1. the writer (Opus, high) has opened the PR;
+2. the reviewer (Sonnet, high) has done the fact-check and a quick frontend skim, fixed what it found, and written `docs/reviews/NN-<slug>.md`;
+3. `npm run build` / `npm run check` pass and the reviewer has merged the PR.
 
-For wave 1 (part 01, no chapter text) the gate is the quick look plus the owner's check of its screenshots. Nothing is deployed during the build; the owner deploys later.
+The coordinator then closes the reviewer thread and reports to the owner in a short message. The next wave starts only when the owner asks. Nothing is deployed during the build; the owner deploys later.
 
 Why gates: a mistake left in one wave travels into the next. The calculator from 03 is reused in 09; terms and claims from early chapters are linked and repeated later.
 

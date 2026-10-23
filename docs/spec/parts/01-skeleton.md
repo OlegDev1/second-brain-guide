@@ -92,10 +92,10 @@ The researcher saves a source for every key fact into the notes Sources table as
 
 - `npm run build` and `npm run check` pass.
 - Every slug in the slug map opens a stub; search finds stub titles.
-- The reading bar works at 360 px: the chapter sheet and the section list open and close, the progress line moves, and a jumped-to heading is never hidden under the bar. The quick look checks this on a stub page with a few test headings.
+- The reading bar works at 360 px: the chapter sheet and the section list open and close, the progress line moves, and a jumped-to heading is never hidden under the bar. The reviewer's frontend skim checks this on a stub page with a few test headings.
 - `/design` shows every component in light and dark theme.
 - `docs/COMPONENTS.md` covers every generic component.
-- The quick look saved screenshots of `/design` and one stub page at 360 and 1440 px, and the owner approved them. Deploying is not part of this part; the owner deploys later.
+- The reviewer skimmed `/design` and one stub page at 360 and 1440 px. Deploying is not part of this part; the owner deploys later.
 
 ## CLAUDE.md template
 
