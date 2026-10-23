@@ -6,6 +6,7 @@ Site content is Russian. Code, comments, docs, notes, commits and PRs are Englis
 ## Read before any task — and nothing else
 - docs/spec/00-general.md, docs/STYLE.md and your own part file in docs/spec/parts/
 - docs/PROGRESS.md only to update your own row
+- Reviewer threads read only 00-general.md, the part's notes file and the pages they check
 - Never open other part files. docs/spec/INDEX.md is for the coordinator only.
 
 ## Where things are

@@ -36,7 +36,7 @@ Decision — why — alternatives. Newest at the bottom of each section.
 | Stubs are real Markdown files with `stub: true` and a working title derived from the slug | Navigation, search and cross-links work from day one; the owning part overwrites the file and sets the real title. | Stubs generated from a slug list in code. |
 | Frontmatter `time` is minutes (number); `prereqs` are chapter paths like `guide/02-project` or plain text; `short` is an optional bar title; `part` is optional | Lets components render "20 мин" and link prerequisites. Stubs leave `part` out because the part→chapter map lives in `INDEX.md`, which part threads don't read. | Free-text time. |
 | Prev / next stay inside a section | Гайд, Advanced and Справочник are read separately. | One chain across all sections. |
-| The `00-roadmap` stub carries test headings | For the quick-look check of the reading bar; replaced by the chapter's author. | A separate test page. |
+| The `00-roadmap` stub carries test headings | For the reviewer's skim of the reading bar; replaced by the chapter's author. | A separate test page. |
 | Generic components are auto-imported in `.md` files | Authors write tags only; fewer broken chapters. | Explicit `<script>` imports. |
 
 ## Design tokens (final values, `src/app.css`)
