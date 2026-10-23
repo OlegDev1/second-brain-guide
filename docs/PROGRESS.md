@@ -5,7 +5,7 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | Part | Title | Status | PR | Notes |
 | --- | --- | --- | --- | --- |
 | 01 | Skeleton and design system | in review | [#1](https://github.com/OlegDev1/second-brain-guide/pull/1) | Site shell, design system, stubs for every slug. |
-| 02 | Git and GitHub | not started | — | |
+| 02 | Git and GitHub | in review | [#3](https://github.com/OlegDev1/second-brain-guide/pull/3) | Reference chapter 05, CommitGraph, STYLE.md reference decisions. |
 | 03 | How Claude works | not started | — | |
 | 04 | Method | not started | — | |
 | 05 | Specs, files, prompt | not started | — | |
