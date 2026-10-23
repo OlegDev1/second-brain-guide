@@ -188,10 +188,12 @@ export function autoImport({ from }) {
 		markup({ content, filename }) {
 			if (!filename?.endsWith('.md')) return;
 			let code = content.replace(/<script context="module">/, '<script module>');
+			// Look for existing imports only inside <script> blocks, not in prose or attributes.
+			const scripts = [...code.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g)].map((m) => m[1]).join('\n');
 			const used = AUTO_IMPORTS.filter(
 				(name) =>
 					new RegExp(`<${name}[\\s/>]`).test(code) &&
-					!new RegExp(`import[^;]*\\b${name}\\b[^;]*from`).test(code)
+					!new RegExp(`import[^;]*\\b${name}\\b[^;]*from`).test(scripts)
 			);
 			if (used.length) {
 				const line = `import { ${used.join(', ')} } from '${from}';`;
