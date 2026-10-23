@@ -170,7 +170,7 @@ Claude API превращает свободный текст в структу�
 
 ### Свой MCP-сервер второго мозга {#own-mcp}
 
-<Term id="mcp">MCP</Term>-сервер второго мозга даёт Claude на сайте и в приложении доступ к твоим задачам: «что у меня на завтра», «добавь в Inbox». Его можно поднять на Cloudflare Workers: транспорт Streamable HTTP, обработчик `createMcpHandler`, вход через `@cloudflare/workers-oauth-provider`. Прежний класс `McpAgent` Cloudflare пометила устаревшим.
+{null}<Term id="mcp">MCP</Term>-сервер второго мозга даёт Claude на сайте и в приложении доступ к твоим задачам: «что у меня на завтра», «добавь в Inbox». Его можно поднять на Cloudflare Workers: транспорт Streamable HTTP, обработчик `createMcpHandler`, вход через `@cloudflare/workers-oauth-provider`. Прежний класс `McpAgent` Cloudflare пометила устаревшим.
 
 В Claude такой сервер подключается как свой коннектор: **Customize → Connectors → Add custom connector**, на бесплатном плане — один (проверено: октябрь 2026). Claude ходит к серверу из облака Anthropic, поэтому адрес должен быть публичным.
 

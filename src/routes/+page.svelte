@@ -8,6 +8,17 @@
 
 	let tab = $state<SectionId>('guide');
 
+	// Static roadmap of the path (catalog #09); each node links to its chapter.
+	const ROADMAP = [
+		{ label: 'Идея', path: '/guide/00-roadmap/' },
+		{ label: 'ТЗ', path: '/guide/03-specs-prompts/' },
+		{ label: 'Проект', path: '/guide/02-project/' },
+		{ label: 'Каркас', path: '/guide/11-architecture/' },
+		{ label: 'Фичи циклами', path: '/guide/07-agent-team/' },
+		{ label: 'Скорость', path: '/guide/10-stack-speed/' },
+		{ label: 'Телефон', path: '/guide/12-deploy/' }
+	];
+
 	function onkeydown(event: KeyboardEvent) {
 		const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
 		if (!step) return;
@@ -37,6 +48,15 @@
 			Как собрать своё приложение «второй мозг» с командой агентов Claude — и понять, почему
 			этот метод работает.
 		</p>
+	</section>
+
+	<section class="roadmap" aria-labelledby="roadmap-title">
+		<h2 id="roadmap-title">Путь</h2>
+		<ol>
+			{#each ROADMAP as node, i (node.path)}
+				<li><a href={href(node.path)}><span class="num">{i + 1}</span>{node.label}</a></li>
+			{/each}
+		</ol>
 	</section>
 
 	<section class="hub" aria-label="Разделы гайда">
@@ -105,6 +125,56 @@
 		margin: 1rem 0 0;
 		color: var(--muted);
 		font-size: 1.125rem;
+	}
+
+	.roadmap {
+		margin-bottom: 2.5rem;
+	}
+
+	.roadmap h2 {
+		margin: 0 0 0.75rem;
+		font-size: var(--text-xs);
+		color: var(--muted);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+	}
+
+	.roadmap ol {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.roadmap a {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-height: var(--tap);
+		padding: 0 0.9rem 0 0.4rem;
+		border: 1px solid var(--line-strong);
+		border-radius: 999px;
+		background: var(--surface);
+		color: var(--ink);
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.roadmap a:hover {
+		border-color: var(--blue);
+	}
+
+	.num {
+		display: grid;
+		place-items: center;
+		width: 1.75rem;
+		height: 1.75rem;
+		border-radius: 50%;
+		background: var(--blue-soft);
+		color: var(--blue-ink);
+		font-size: var(--text-xs);
 	}
 
 	.tabs {
