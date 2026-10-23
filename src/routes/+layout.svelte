@@ -23,15 +23,17 @@
 	.skip {
 		position: absolute;
 		left: 0.5rem;
-		top: -3rem;
+		top: 0.5rem;
+		transform: translateY(-200%);
 		z-index: 50;
 		padding: 0.6rem 1rem;
 		border-radius: 8px;
-		background: var(--accent);
-		color: var(--on-accent);
+		border: 2px solid var(--focus);
+		background: var(--surface);
+		color: var(--accent-ink);
 	}
 
 	.skip:focus {
-		top: 0.5rem;
+		transform: none;
 	}
 </style>

@@ -83,8 +83,11 @@
 
 	/** Pagefind excerpts are escaped text with <mark> around hits; render them without {@html}. */
 	function parts(excerpt: string): { text: string; mark: boolean }[] {
-		const decode = (html: string) =>
-			new DOMParser().parseFromString(html, 'text/html').documentElement.textContent ?? '';
+		const area = document.createElement('textarea');
+		const decode = (html: string) => {
+			area.innerHTML = html;
+			return area.value;
+		};
 		return excerpt
 			.split(/(<mark>.*?<\/mark>)/)
 			.filter(Boolean)
