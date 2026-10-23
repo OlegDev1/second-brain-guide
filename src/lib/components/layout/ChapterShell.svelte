@@ -55,7 +55,8 @@
 			active = current;
 			const max = document.documentElement.scrollHeight - window.innerHeight;
 			progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 1;
-			if (progress > 0.97 && !stub) readMarks.mark(key);
+			// A page that fits on one screen cannot be "scrolled to the end", so it is never marked.
+			if (max > 0 && progress > 0.97 && !stub) readMarks.mark(key);
 		};
 
 		const schedule = () => {
