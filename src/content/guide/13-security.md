@@ -63,10 +63,10 @@ API-ключ — секретная строка, по которой серви
 </defs>
 <rect class="node blue" x="60" y="10" width="200" height="44" />
 <text class="label" x="160" y="37" text-anchor="middle">Приложение на телефоне</text>
-<text class="label small" x="160" y="74" text-anchor="middle">итоги дня, без ключа</text>
+<text class="label small" x="172" y="82" text-anchor="start">итоги дня, без ключа</text>
 <rect class="node amber" x="40" y="104" width="240" height="44" />
 <text class="label" x="160" y="131" text-anchor="middle">Функция: ключ в секретах</text>
-<text class="label small" x="160" y="168" text-anchor="middle">запрос + ключ</text>
+<text class="label small" x="172" y="176" text-anchor="start">запрос + ключ</text>
 <rect class="node neutral" x="60" y="198" width="200" height="44" />
 <text class="label" x="160" y="225" text-anchor="middle">Платный ИИ-сервис</text>
 <path class="arrow" d="M160 54v46" marker-end="url(#arrow-proxy)" />
