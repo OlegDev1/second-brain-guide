@@ -11,6 +11,11 @@ updated: 2026-10-23
 description: Как надиктовать ТЗ голосом, пройти интервью с Opus и писать агентам так, чтобы им не приходилось гадать.
 ---
 
+<script>
+	// Explicit: the auto-import skips these when "important" and a Msg "from" surround them (see notes).
+	import { Callout, ChatTranscript, Msg } from '$lib/components';
+</script>
+
 <LessonHeader
 	learn={[
 		'Как собрать ТЗ голосом в обычном чате и пройти интервью',

@@ -78,3 +78,56 @@ All rows checked on 2026-10-23. Anchors: `03` = `/guide/03-specs-prompts`, `04` 
 | Characters per token depend on the model and the language | 15#english | https://platform.claude.com/docs/en/about-claude/glossary | 2026-10-23 | Entry "Tokens": "depends on the model and the language" |
 | Claude's scores in other languages are measured relative to English (100%) | 15#english | https://platform.claude.com/docs/en/build-with-claude/multilingual-support | 2026-10-23 | "expressed as a percentage relative to English performance (100%)" |
 | GitHub: New repository → choose visibility → optional README → Create repository | 15#steps | https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-new-repository | 2026-10-23 | "Choose a repository visibility." |
+
+## New terms
+
+| EN | RU | Definition |
+| --- | --- | --- |
+| acceptance criteria | критерии приёмки | List of checks after which a feature counts as done; each takes a minute by hand. |
+| bug report | баг-репорт | Message about a bug that lets anyone repeat it: steps, expected, actual, screenshot, device. |
+| interview | интервью | The model asks you questions block by block before it writes a spec. |
+| effort | усилие (effort) | How long the model thinks before answering; levels Low … Max. |
+| dictation | диктовка | Speech turned into text in the Claude app before sending. |
+| harness | обвязка (harness) | The program around the model (Claude Code); not a file. |
+| hook | хук | Command Claude Code runs by itself at a set moment, e.g. after each edit. |
+| permission rule | правило разрешений | `allow` / `ask` / `deny` entry in `.claude/settings.json`. |
+| Library | Library | Project tab with the files you added and the files threads produced. |
+| connector | коннектор | MCP server connected once to the claude.ai account; cloud threads use it. |
+
+## Ready phrases
+
+| Title | Chapter#anchor | Phrase |
+| --- | --- | --- |
+| Начать интервью | 03#interview | Не пиши ТЗ, пока не поймёшь всё. Задавай вопросы по одному блоку за раз: экраны, данные, правила, крайние случаи, что важнее всего. Если что-то слишком сложно для первой версии, скажи и предложи перенести. |
+| ТЗ большой фичи | 03#feature-spec | Возьми у меня интервью про фичу [название] и запиши ТЗ в docs/features/[name].md: цель, экраны, данные, правила и крайние случаи, критерии приёмки, чего не делаем. Код не пиши. Открой PR с этим файлом и остановись. |
+| Сначала план | 03#plan-first | Сначала изучи нужные файлы и пришли план: что поменяешь, в каких файлах и как проверишь. Код не пиши, пока я не скажу OK. |
+| Баг-репорт | 03#bug-report | Баг в [фича]. Шаги: [что нажимал по порядку]. Ожидал: [что должно быть]. Получил: [что случилось]. Скриншот прикрепил. Устройство: [телефон, браузер]. Сначала повтори баг и найди причину, потом чини в новой ветке и открой PR. |
+| Перезапуск задачи | 03#no-circles | Начни задачу [название] заново в новой ветке. ТЗ: [файл]. Прошлый поток пробовал [что пробовал], не сработало, потому что [почему]. Не повторяй этот путь. Сначала пришли план. |
+| Записать решение | 04#why-files | Запиши это решение в docs/DECISIONS.md: что решили, почему и какие варианты отбросили. Если оно меняет правила работы, обнови CLAUDE.md. Открой PR. |
+| Запомнить | 04#outside-repo | Запомни: [факт или решение]. Это важно для всех будущих потоков. |
+| Промпт для ТЗ проекта | 15#prompt | The full prompt from the part file (long; copy it from the page). |
+| Поправить комплект | 15#conversation | В пересказе неверно: [что не так]. Исправь это во всех файлах, где оно встречается, и пришли заново только изменённые блоки. |
+| Остановить старт | 15#setup | Подожди, пока ничего не начинай. Я сначала настрою проект и пришлю первое сообщение. |
+| Первая волна | 15#launch | Начни первую волну MVP из docs/spec/. Одна фича — один поток, своя ветка и один PR. Не больше двух потоков одновременно. На каждом PR остановись и жди моей проверки. |
+
+## Troubleshooting
+
+| Symptom | Cause | Fix |
+| --- | --- | --- |
+| A skill in `.claude/skills/` is ignored by project threads | Cloud threads of a project don't load repo skills | Enable the skill on the claude.ai account, or run the thread on your computer via Remote Control |
+| Hooks or permission rules from `.claude/settings.json` don't work in a thread | Cloud threads don't apply them | Approve inside the thread; use hooks only in local sessions |
+| A new rule in project instructions is not followed | Changes reach only new threads | Start a new thread |
+| The thread ignores half of `CLAUDE.md` | File too long; adherence drops | Cut it to a map under 200 lines, move details to `docs/` |
+| The model keeps making the same mistake after corrections | Long history of failed attempts | After two failed corrections start a new thread that says what didn't work |
+| Claude starts working right after the project is created | First project: Claude takes its own first turn | Send «Подожди, пока ничего не начинай» right away |
+| Threads can't see the repository | Claude GitHub App not installed on it | Install it at github.com/apps/claude and grant the repository |
+
+## Open questions
+
+1. **Correction differs from the part file.** The part file says a thread starts with "`CLAUDE.md` and skills from the repo". The Projects docs say cloud threads load the repo's `CLAUDE.md` but not its skills, agents, commands, `.claude/settings.json` or `.mcp.json`; skills come from the claude.ai account. Chapter 04 follows the docs and states this as a second «important» correction. Part 09 (`a3-claude-code-advanced`) may want to align.
+2. **"English = fewer tokens".** No official page gives a number for Russian vs English tokens. Chapter 15 says only what is sourced: characters per token depend on the language, and Anthropic measures other languages relative to English. Plus the practical reason: code and docs are already in English.
+3. **Empty repository.** The Projects docs don't say whether a project works with a repository that has no commits. Chapter 15 tells the reader to create a README so the repository has a first commit.
+4. **Auto-import bug in part 01's `config/markdown.js`.** The "already imported" check `import[^;]*\bName\b[^;]*from` matches `type="important"` … `<Name` … `from="you"` (a `Msg`), so `Callout`, `ChatTranscript` and `Msg` were not imported in chapter 03 and the build failed with "Callout is not defined". Chapter 03 imports them explicitly. Part 01 or 10 should limit the regex to `<script>` content.
+5. **Coordinator effort for the kickoff.** The part file says "highest effort for the kickoff, then Low". The chapter says "the highest available" and to switch back to Low after the first PR; the Projects page itself doesn't list level names.
+6. **Mobile screenshots.** The upload help page doesn't say how to attach images on mobile, so chapter 03 describes the "+" menu on claude.ai and dictation on the phone only.
+7. **Word counts.** Prose without code: chapter 03 about 2,100 words, 04 about 2,150 (plus templates), 15 about 1,400 plus the prompt. All inside the 1,500–3,500 range, a little under STYLE's 2,500 target.

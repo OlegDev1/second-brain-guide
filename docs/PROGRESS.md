@@ -8,7 +8,7 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | 02 | Git and GitHub | in review | [#3](https://github.com/OlegDev1/second-brain-guide/pull/3) | Reference chapter 05, CommitGraph, STYLE.md reference decisions. |
 | 03 | How Claude works | not started | — | |
 | 04 | Method | not started | — | |
-| 05 | Specs, files, prompt | not started | — | |
+| 05 | Specs, files, prompt | in review | PR pending | Chapters 03, 04, 15, RepoTree; cloud threads don't load repo skills (see notes). |
 | 06 | App architecture | not started | — | |
 | 07 | Quality, deploy, security | not started | — | |
 | 08 | Advanced: data and integrations | not started | — | |
