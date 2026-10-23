@@ -8,6 +8,11 @@ Component: `src/lib/components/tokens/TokenCalculator.svelte`.
 All rows checked on 2026-10-23. Anchors: `01#…` is `/guide/01-how-agents-work`, `09#…` is `/guide/09-tokens-limits`.
 
 ### Agent, loop, context (chapter 01)
+| Project memory, project instructions, repositories (with `CLAUDE.md`), files and environment carry context across threads | 01#between-threads | https://code.claude.com/docs/en/claude-projects | 2026-10-23 | Section "Give a project standing context": "carry context across threads" |
+| When you correct a thread, tell Claude to remember it: it goes to project memory and later threads start with it | 01#between-threads | https://code.claude.com/docs/en/claude-projects | 2026-10-23 | Section "Write project instructions": "also tell Claude to remember the correction" |
+| A subagent works in its own context window; its tool calls stay out of yours; Claude gets back a summary | 01#subagent | https://code.claude.com/docs/en/how-claude-code-works | 2026-10-23 | Section "Manage context with skills and subagents" |
+| Claude Code orders requests: system prompt, then project context (CLAUDE.md, memory), then conversation | 01#cache | https://code.claude.com/docs/en/prompt-caching | 2026-10-23 | Table in "How the cache is organized" |
+| Each request that hits the cache resets the timer; after a long gap the next request recomputes the full input | 01#cache | https://code.claude.com/docs/en/prompt-caching | 2026-10-23 | Section "Cache lifetime": "Each request that hits the cache resets the timer" |
 
 | Claim (short) | Chapter#anchor | URL | Checked on | Locator |
 | --- | --- | --- | --- | --- |
@@ -44,6 +49,9 @@ All rows checked on 2026-10-23. Anchors: `01#…` is `/guide/01-how-agents-work`
 | Pause example: 800k context after the cache expired ≈ 800k × 1.25 = 1M plain input tokens (PDF slide 2, arithmetic) | 09#prices | PDF slide 2 + multipliers row above | 2026-10-23 | «800 тыс. × 1.25». Our arithmetic: 800,000 × 1.25 = 1,000,000; warm read 800,000 × 0.1 = 80,000; 1-hour write 800,000 × 2 = 1,600,000 |
 
 ### Compaction and research (chapter 01)
+| The context window is the most important resource to manage | 01#research | https://code.claude.com/docs/en/best-practices | 2026-10-23 | "The context window is the most important resource to manage." |
+| LongMemEval (PDF [12]): commercial chat assistants and long-context LLMs show a 30% accuracy drop on memorizing information across sustained interactions | 01#research | https://arxiv.org/abs/2410.10813 | 2026-10-23 | Abstract: "a 30% accuracy drop on memorizing information" |
+| Affiliations in the research list (Adobe Research; Microsoft Research and Salesforce; UCLA and Tencent AI Lab; Google DeepMind) and the NoLiMa venue ICML 2025 | 01#research, 01#conclusion | PDF slide 4 labels [2], [9], [12], [13]; NoLiMa venue on https://arxiv.org/abs/2502.05167 ("Accepted at ICML 2025") | 2026-10-23 | PDF slide 4 card headers |
 
 | Claim (short) | Chapter#anchor | URL | Checked on | Locator |
 | --- | --- | --- | --- | --- |
@@ -64,6 +72,14 @@ All rows checked on 2026-10-23. Anchors: `01#…` is `/guide/01-how-agents-work`
 | Put persistent rules in CLAUDE.md rather than relying on history | 01#conclusion | https://code.claude.com/docs/en/how-claude-code-works | 2026-10-23 | "Put persistent rules in CLAUDE.md rather than relying on conversation history." |
 
 ### Tokens, limits, practices (chapter 09)
+| One-thread example: 60 steps × 75k average = 4.5M read; × 0.1575 ≈ 0.7M plain; same steps at 300k ≥ 18M | 09#one-thread | Our arithmetic; the step count and context sizes are a labelled assumption | 2026-10-23 | 60 × 75,000 = 4,500,000; 4.5M × 0.1575 = 708,750; 60 × 300,000 = 18,000,000 |
+| Pause example in the chapter: 1M / 80k = 12.5; 1.6M / 80k = 20 → "в 12–20 раз дороже" | 09#prices | Our arithmetic | 2026-10-23 | — |
+| Output price is 5× input for Opus 5.5 ($4 / $20 per MTok) and Sonnet 5.5 ($2 / $10) | 09#not-counted | https://platform.claude.com/docs/en/about-claude/pricing | 2026-10-23 | Model pricing table |
+| Thinking tokens are billed as output; default thinking budget can be tens of thousands of tokens per request; thinking can't be turned off on Opus 5.5 / Sonnet 5.5; lower the effort level | 09#not-counted | https://code.claude.com/docs/en/costs | 2026-10-23 | Section "Adjust extended thinking": "Thinking tokens are billed as output tokens" |
+| `/usage` shows plan limits and when they reset; `/context` shows what's using space | 09#project-spend | https://code.claude.com/docs/en/errors ; https://code.claude.com/docs/en/costs | 2026-10-23 | errors: "Run /usage to see your plan limits and when they reset"; costs: "Run /context to see what's consuming space." |
+| As the context fills, Claude may forget earlier instructions or make more mistakes | 09#fresh-thread | https://code.claude.com/docs/en/best-practices | 2026-10-23 | "Claude may start "forgetting" earlier instructions or making more mistakes" |
+| Long conversations in Claude chat consume more of the usage limit; start a new conversation when near the limit | 09#long-chat | https://support.claude.com/en/articles/11647753-how-do-usage-and-length-limits-work | 2026-10-23 | "Longer conversations that trigger automatic context management consume more of your usage limit" |
+| Pause banner: Resume on the banner above the project's message box; a paused thread continues when you message it | 09#limit-hit | https://code.claude.com/docs/en/claude-projects | 2026-10-23 | Section "Pause, archive, or delete a project" |
 
 | Claim (short) | Chapter#anchor | URL | Checked on | Locator |
 | --- | --- | --- | --- | --- |
@@ -136,6 +152,7 @@ All rows checked on 2026-10-23. Anchors: `01#…` is `/guide/01-how-agents-work`
 ## Open questions
 
 - NoLiMa: the PDF says 12 models and "10 of 12"; the current arXiv abstract says 13 models and 11. The chapter uses the abstract numbers.
+- LongMemEval: arXiv v1 is from October 2024, v2 from March 2025; the chapter groups it with the 2025 works as the PDF does.
 - Lost in multi-turn: the PDF says 15 models; the abstract gives no model count. The chapter omits the count.
-- LongMemEval and SCoRe venues (ICLR 2025 in the PDF) are not shown on the arXiv pages; the chapter does not name venues for them. LongMemEval is not used.
+- LongMemEval and SCoRe venues (ICLR 2025 in the PDF) are not shown on the arXiv pages; the chapter does not name venues for them. 
 - Plan prices and limits change often; the chapter marks them «проверено: октябрь 2026». How plan limits weigh 1-hour cache writes is not published; the chapter does not claim it.
