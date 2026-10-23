@@ -4,7 +4,7 @@ short: Производительность
 part: "08"
 order: 4
 slug: a5-performance
-time: 20
+time: 15
 level: advanced
 prereqs: [guide/10-stack-speed]
 updated: 2026-10-23
