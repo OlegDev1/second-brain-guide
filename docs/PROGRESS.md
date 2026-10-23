@@ -10,7 +10,7 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | 04 | Method | in review | [#5](https://github.com/OlegDev1/second-brain-guide/pull/5) | Chapters 02 and 07, ProjectDiagram, «Выбери за меня» transcript, roles table. |
 | 05 | Specs, files, prompt | done | [#8](https://github.com/OlegDev1/second-brain-guide/pull/8) | Chapters 03, 04, 15, RepoTree; cloud threads don't load repo skills (see notes). |
 | 06 | App architecture | in review | — | Chapters 06, 10 and 11, two inline SVG diagrams, framework and notification tables, notes with sources and measured bundle sizes. |
-| 07 | Quality, deploy, security | not started | — | |
+| 07 | Quality, deploy, security | in review | — | Chapters 08, 12 and 13; tests and Capacitor commands run in a scratch folder; deploy stepper follows the SvelteKit Pages example (no workflow in the repo yet). |
 | 08 | Advanced: data and integrations | not started | — | |
 | 09 | Advanced: tooling | not started | — | |
 | 10 | Reference and wrap-up | not started | — | |
