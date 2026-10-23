@@ -11,6 +11,6 @@ Each part edits only its own row. Status: not started / in progress / in review 
 | 05 | Specs, files, prompt | done | [#8](https://github.com/OlegDev1/second-brain-guide/pull/8) | Chapters 03, 04, 15, RepoTree; cloud threads don't load repo skills (see notes). |
 | 06 | App architecture | in review | — | Chapters 06, 10 and 11, two inline SVG diagrams, framework and notification tables, notes with sources and measured bundle sizes. |
 | 07 | Quality, deploy, security | not started | — | |
-| 08 | Advanced: data and integrations | not started | — | |
+| 08 | Advanced: data and integrations | in review | [#10](https://github.com/OlegDev1/second-brain-guide/pull/10) | A1 local-first, A2 integrations catalog with voice-inbox example, A5 performance. |
 | 09 | Advanced: tooling | not started | — | |
 | 10 | Reference and wrap-up | not started | — | |
