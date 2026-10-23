@@ -69,12 +69,12 @@
 		margin-top: 0.4rem;
 	}
 
-	.body :global(> * + *) {
-		margin-top: 0.6rem;
+	.body :global(:where(p)) {
+		margin: 0;
 	}
 
-	.body :global(p) {
-		margin: 0;
+	.body :global(> * + *) {
+		margin-top: 0.6rem;
 	}
 
 	.check {

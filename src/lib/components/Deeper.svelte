@@ -69,11 +69,11 @@
 		font-size: var(--text-small);
 	}
 
-	.body :global(> * + *) {
-		margin-top: 0.75rem;
+	.body :global(:where(p)) {
+		margin: 0;
 	}
 
-	.body :global(p) {
-		margin: 0;
+	.body :global(> * + *) {
+		margin-top: 0.75rem;
 	}
 </style>
