@@ -37,7 +37,7 @@ export const glossary: GlossaryEntry[] = [
 	{ id: 'conflict', term: 'конфликт', en: 'conflict', short: 'Два изменения в одном и том же месте.', chapter: '/guide/05-git-github#conflict' },
 	{ id: 'revert', term: 'откат коммитом (revert)', en: 'revert', short: 'Новый коммит, который отменяет старый.', chapter: '/guide/05-git-github#revert' },
 	{ id: 'deploy', term: 'деплой', en: 'deploy', short: 'Публикация сайта или приложения.', chapter: '/guide/12-deploy#what-is-deploy' },
-	{ id: 'pwa', term: 'PWA', en: 'PWA', short: 'Веб-приложение, которое можно установить на телефон.', chapter: '/guide/12-deploy#pwa' },
+	{ id: 'pwa', term: 'PWA', en: 'PWA', short: 'Веб-приложение, которое можно установить на телефон.', chapter: '/guide/10-stack-speed#android' },
 	{ id: 'mcp', term: 'MCP', en: 'MCP', short: 'Протокол для подключения инструментов и данных к Claude.', chapter: '/guide/04-project-files#mcp' },
 
 	// Added by part 10 from the notes files of parts 02–09.
@@ -74,7 +74,7 @@ export const glossary: GlossaryEntry[] = [
 	{ id: 'rune', term: 'руна', en: 'rune', short: 'Символ Svelte 5 вроде $state или $derived, который управляет компилятором.', chapter: '/guide/10-stack-speed#why-svelte' },
 	{ id: 'bundle', term: 'бандл', en: 'bundle', short: 'JavaScript-файлы, которые браузер скачивает, чтобы запустить приложение.', chapter: '/advanced/a5-performance' },
 	{ id: 'web-worker', term: 'воркер', en: 'web worker', short: 'Фоновый поток браузера для тяжёлой работы, чтобы экран не зависал.', chapter: '/guide/10-stack-speed#workers' },
-	{ id: 'capacitor', term: 'Capacitor', en: 'Capacitor', short: 'Нативная оболочка, которая превращает веб-приложение в приложение для Android или iOS.', chapter: '/guide/12-deploy#apk' },
+	{ id: 'capacitor', term: 'Capacitor', en: 'Capacitor', short: 'Нативная оболочка, которая превращает веб-приложение в приложение для Android или iOS.', chapter: '/guide/10-stack-speed#android' },
 	{ id: 'module', term: 'модуль', en: 'module', short: 'Одна функция приложения целиком, в своей папке, например src/modules/focus/.', chapter: '/guide/11-architecture#module' },
 	{ id: 'architecture', term: 'архитектура', en: 'architecture', short: 'План приложения: что где лежит и кто с кем разговаривает.', chapter: '/guide/11-architecture#what' },
 	{ id: 'data-model', term: 'модель данных', en: 'data model', short: 'Форма данных: какие поля есть у записи. Не путать с нейросетью.', chapter: '/guide/11-architecture#terms' },
@@ -84,9 +84,6 @@ export const glossary: GlossaryEntry[] = [
 	{ id: 'migration', term: 'миграция', en: 'migration', short: 'Код, который переводит сохранённые записи на новую версию схемы.', chapter: '/guide/11-architecture#versions' },
 	{ id: 'unit-test', term: 'юнит-тест', en: 'unit test', short: 'Короткий тест одной функции, без интерфейса.', chapter: '/guide/08-testing#levels' },
 	{ id: 'e2e-test', term: 'end-to-end тест', en: 'end-to-end test', short: 'Тест, который прокликивает приложение в браузере, как пользователь.', chapter: '/guide/08-testing#levels' },
-	{ id: 'base-path', term: 'базовый путь', en: 'base path', short: 'Префикс адреса вроде /second-brain-guide/, когда сайт лежит не в корне домена.', chapter: '/guide/12-deploy#pages-sveltekit' },
-	{ id: 'service-worker', term: 'service worker', en: 'service worker', short: 'Скрипт, который кэширует PWA и ставит обновления.', chapter: '/guide/12-deploy#pwa-update' },
-	{ id: 'apk', term: 'APK', en: 'APK', short: 'Файл приложения Android, который ставится не из магазина.', chapter: '/guide/12-deploy#apk' },
 	{ id: 'api-key', term: 'API-ключ', en: 'API key', short: 'Секретная строка, по которой платный сервис узнаёт тебя.', chapter: '/guide/13-security#keys' },
 	{ id: 'prompt-injection', term: 'инъекция промпта', en: 'prompt injection', short: 'Текст на странице или в файле, который пытается командовать агентом.', chapter: '/guide/13-security#injection' },
 	{ id: 'local-first', term: 'local-first', en: 'local-first', short: 'Главная копия данных живёт на устройстве, а сервер только помогает копиям встретиться.', chapter: '/advanced/a1-local-first' },
