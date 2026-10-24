@@ -40,7 +40,7 @@ Props: `learn: string[]`, `time?: number`, `level?: 'basic' | 'advanced'`, `prer
 ```
 
 ### TLDR
-Props: `title = 'Коротко'`. Two or three lines that open the chapter.
+Props: `title = 'Коротко'`. A plain-language summary of 4–6 lines that opens the chapter; jargon only in brackets.
 ```svelte
 <TLDR>Каждая задача живёт в своей ветке.</TLDR>
 ```
