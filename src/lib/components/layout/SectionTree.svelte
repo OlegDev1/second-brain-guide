@@ -1,7 +1,8 @@
 <!--
   SectionTree: every chapter as one flat list, grouped by Гайд / Advanced / Справочник, beside the
   text from 1024 px (catalog #11). Nothing folds: the chapter's own sections live in the right rail.
-  A chapter marked in the navigation config (isHighlighted) is green with a flag.
+  A chapter marked in the navigation config (isHighlighted) gets a divider above, a green number
+  and a green flag; otherwise it looks like any other item.
   Props: chapter (current).
 -->
 <script lang="ts">
@@ -29,7 +30,7 @@
 			<ul>
 				{#each chaptersOf(section.id) as item (item.slug)}
 					{@const current = item.slug === chapter.slug && item.section === chapter.section}
-					<li>
+					<li class={{ final: isHighlighted(item) }}>
 						<a
 							href={href(chapterPath(item))}
 							class={{ highlight: isHighlighted(item) }}
@@ -98,18 +99,10 @@
 		font-weight: 600;
 	}
 
-	a.highlight {
-		margin-top: 0.25rem;
-		border: 1px solid var(--green);
-		background: var(--green-soft);
-		color: var(--green-ink);
-		font-weight: 600;
-	}
-
-	a.highlight:hover,
-	a.highlight[aria-current='page'] {
-		box-shadow: inset 0 0 0 1px var(--green);
-		color: var(--green-ink);
+	li.final {
+		margin-top: 0.5rem;
+		padding-top: 0.5rem;
+		border-top: 1px solid var(--line);
 	}
 
 	.num {
@@ -121,7 +114,7 @@
 	}
 
 	.highlight .num {
-		color: inherit;
+		color: var(--green-ink);
 	}
 
 	.title {
