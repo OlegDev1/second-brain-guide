@@ -187,3 +187,7 @@ $ keytool -genkeypair -v -keystore brain-release.jks -alias brain -keyalg RSA -k
 - Google Play service fees changed in 2026 by region; the chapter gives only the registration fee and testing requirement and says fees apply to sales. Re-check before quoting percentages.
 - Android developer verification: the limited distribution account and advanced flow were announced for August 2026; the FAQ still uses future tense in places. Re-check before the next update.
 - GitHub Pages having no per-PR previews: stated as "no built-in preview links" from the absence of the feature in Pages docs; the hosts that do have them are cited.
+
+## Fixes wave (2026-10-24)
+
+Chapter 08 rewritten for a non-technical reader: new opening section 08#how-it-fits (tests from the spec, a separate checker agent, the owner on the phone), code blocks and the Vitest/Doze details removed, each test (randomness, focus timer, daylight-saving change) explained in plain words with an optional ready phrase, and an optional review phrase in 08#review. 08#levels keeps its anchor (glossary links to it) but drops the comparison table. Sources no longer cite MDN, Vitest or Android Doze, since those claims left the page. The scratch runs above still back the facts the page keeps (seeded counts, 23-hour gap on 2026-03-29).
