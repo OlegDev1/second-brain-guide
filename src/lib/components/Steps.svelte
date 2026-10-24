@@ -12,7 +12,9 @@
 <style>
 	.steps {
 		counter-reset: step;
-		margin: 0;
+		/* Top margin comes from the prose flow, so the first number clears the heading above. */
+		margin-inline: 0;
+		margin-bottom: 0;
 		padding: 0;
 		list-style: none;
 	}
