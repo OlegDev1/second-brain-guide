@@ -203,3 +203,32 @@ react-dom 19.3.1, svelte 5.57.2, solid-js 1.9.17, lit 3.3.3. Measured 2026-10-23
   the Safari rule is counted separately for them (https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/).
   Chapter 06 now says this. The friend uses Android, so it stays a side note.
 - Framework "ecosystem" and "help for the agent" cells are judgments; only the MCP/llms.txt part is sourced.
+
+## Fixes wave (2026-10-24)
+
+- Chapter 11 reworked for a non-technical reader: plain intro and four terms (module, core, data
+  model, event), the two halves of a repository, our own repository folder by folder, the second
+  brain's architecture as short plain subsections plus one Accordion with the agent-level details,
+  and three other architecture patterns with a ready phrase each. Code samples removed from the main
+  text; the agent details keep the module folder tree only. Incoming anchors kept: `item`, `module`,
+  `events`, `one-thread-one-folder`, `versions`, `export`.
+- Source for "our repository" (11#our-repo): the repository tree on `main` at 2026-10-24
+  (`CLAUDE.md`, `docs/spec/{00-general.md,INDEX.md,parts/}`, `docs/PROGRESS.md`, `docs/DECISIONS.md`,
+  `docs/STYLE.md`, `docs/COMPONENTS.md`, `docs/parts/`, `docs/reviews/`, `src/content/`,
+  `src/lib/components/`, `src/routes/`, `static/`, `config/`, `.github/workflows/deploy.yml` runs on
+  push to `main`). No `.claude/skills/` in the repository.
+- Chapter 10: new plain intro on what a stack is and where the choice is recorded; framework
+  CompareTable, Svelte code sample, bundle-size code block and notification CompareTable replaced by
+  plain text; DevTools steps cut to one line and a link; "Common.js" callout shortened to one line.
+  Removed sources no longer cited: React Render and Commit, React Compiler, SQLite WASM, MDN import(),
+  Chrome Performance panel.
+
+### New terms
+
+| EN | RU | Definition |
+| --- | --- | --- |
+| architecture | архитектура | Plan of the app: what lives where and who talks to whom |
+| data model | модель данных | Shape of the data: which fields a record has; not the neural network |
+| core | ядро | Shared part every module relies on: storage, menu, shared controls |
+| event | событие | "Something happened" message a module broadcasts to the others |
+| stack | стек | Set of tools the app is built from |
