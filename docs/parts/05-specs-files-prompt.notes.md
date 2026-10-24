@@ -131,3 +131,18 @@ All rows checked on 2026-10-23. Anchors: `03` = `/guide/03-specs-prompts`, `04` 
 5. **Coordinator effort for the kickoff.** The part file says "highest effort for the kickoff, then Low". The chapter says "the highest available" and to switch back to Low after the first PR; the Projects page itself doesn't list level names.
 6. **Mobile screenshots.** The upload help page doesn't say how to attach images on mobile, so chapter 03 describes the "+" menu on claude.ai and dictation on the phone only.
 7. **Word counts.** Prose without code: chapter 03 about 2,100 words, 04 about 2,150 (plus templates), 15 about 1,400 plus the prompt. All inside the 1,500–3,500 range, a little under STYLE's 2,500 target.
+
+## Fixes wave (2026-10-24)
+
+Changes made by the fixes wave, so later agents know why the chapters differ from the part file.
+
+- **Chapter 03.** New opening section: one master spec plus narrow per-agent parts, a flowchart of where the spec goes (Library = start copy, GitHub `docs/spec/` = working version) and why. «Разделы ТЗ» became «Структуру ТЗ строит чат»: the reader dictates, the chat structures; our structure (`00-general.md`, `INDEX.md`, `parts/`), the template zip and the two-agent rule (Opus builds, its thread is closed; Sonnet checks; the builder is reopened only for issues). New section «Наш пример» (N4): our conditions, the owner's agent-workflow diagram (`src/lib/assets/spec/agents-scheme.webp`, captioned that Haiku is no longer used), how `docs/spec/` is structured, and a shortened real coordinator → builder message.
+- **Template pack (N3).** Source in `docs/templates/spec-pack/`, zip in `static/downloads/spec-pack.zip`; rebuild command in `docs/templates/README.md`. Based on `docs/spec/00-general.md`, `INDEX.md` and a part file, with project content stripped and "Template note" lines kept.
+- **Chapter 15.** Title is now «Промпт для старта». The prompt lives in `docs/templates/spec-pack/starter-prompt.txt` and the chapter imports it with `?raw`, so page and zip never drift. The prompt now asks the spec chat to split the spec itself into `spec/` (00-general, INDEX, parts), forbids personal data (G7), sets the two-agent workflow and asks for one zip. The section «От репозитория до первой фичи» is now «Как начать» (`#steps`): unzip, add the folder (never the zip) when creating the project, Library as the fallback; coordinator effort is Max or Extra high per the owner's brief, no "back to Low".
+- **Chapter 04.** New plain intro «Три группы файлов» before the folder breakdown; `docs/spec/` bullet and RepoTree aligned with the 00-general / INDEX / parts structure; `src/` in RepoTree now explains where it comes from.
+
+Open after this wave:
+
+8. **«Как начать» stays a section of chapter 15**, not a separate page: a new page would touch navigation and the home page, which belong to another thread. If the owner wants it as its own sidebar item, it needs a new slug and a home-page entry.
+9. **Old link text.** `src/content/ref/phrases.md` still says «Твой ход: …» and «Твой промпт» for chapter 15. The ref pages belong to part 10.
+10. **The part file prompt is superseded.** The verbatim prompt in `docs/spec/parts/05-specs-files-prompt.md` is the pre-wave version; the source of truth is now `docs/templates/spec-pack/starter-prompt.txt`.
