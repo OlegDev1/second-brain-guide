@@ -204,7 +204,11 @@ react-dom 19.3.1, svelte 5.57.2, solid-js 1.9.17, lit 3.3.3. Measured 2026-10-23
   Chapter 06 now says this. The friend uses Android, so it stays a side note.
 - Framework "ecosystem" and "help for the agent" cells are judgments; only the MCP/llms.txt part is sourced.
 
-## Fixes wave (2026-10-24)
+## Fixes wave (2026-10-24), chapter 06
+
+Chapter 06 was rewritten around one path: you write the spec → a cloud thread → push to GitHub → deploy to a server or download to your device (new diagram in `#code-path`). Added a G1 intro (`#what-is-sync`) and the Library-vs-GitHub split in `#library-copies` (specs, progress files and notes live on GitHub and survive deleting the project). The laptop part (`#thread-copy`, `#pull`, `#both-sides`, `claude --teleport`) is cut to two lines in `#devices`; `#hosting` folded into `#code-path`; the Safari/eviction Deeper and `#backup-place` cut to one paragraph. Kept anchors with inbound links: `#commit-often`, `#library-copies`, `#data-on-phone`, `#backup`. The "Laptop pull" run above no longer backs any text on the page.
+
+## Fixes wave (2026-10-24), chapters 10 and 11
 
 - Chapter 11 reworked for a non-technical reader: plain intro and four terms (module, core, data
   model, event), the two halves of a repository, our own repository folder by folder, the second

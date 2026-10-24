@@ -282,3 +282,13 @@ $ git tag -a v0.1 -m "First working version"
 $ git push origin v0.1
  * [new tag]         v0.1 -> v0.1
 ```
+
+## Fixes wave (2026-10-24)
+
+Chapter 05 is now Basics (commit, hash, branch, PR, regular merge, conflict, protected main, history, revert) plus one collapsed `Accordion` «Продвинутое» (`#advanced`) holding `#merge-methods`, `#restore-file`, `#old-version`, `#reset`, `#releases`, `#reuse`. All old anchors are kept; a small `onMount` script in the chapter opens the accordion when the URL hash points inside it. New anchors: `#merge` (regular merge), `#advanced`.
+
+Removed (G3/G4): the «Что внутри коммита» Deeper, the `git log` and conflict-marker code blocks, all `bash` blocks, the four-way rollback CompareTable, the reflog Deeper (one line left in `#reset`), fork/clone/package in `#reuse`. The command runs below stay as evidence for the plain-text descriptions.
+
+New component `src/lib/components/git/CommitRow.svelte`: a mock of one GitHub commit-list row (title, author and time below, short hash on the right) used in `#history`. CommitGraph now gets a shorter caption; the diagram is explained by a numbered list under it.
+
+PR section: "a thread opens a PR when its feature is done and tells the coordinator it wants to merge into main" is the project workflow from the owner's brief; the thread card buttons are backed by the existing claude-projects row.

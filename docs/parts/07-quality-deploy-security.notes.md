@@ -190,4 +190,21 @@ $ keytool -genkeypair -v -keystore brain-release.jks -alias brain -keyalg RSA -k
 
 ## Fixes wave (2026-10-24)
 
+Chapter 12 was cut to the three deploy options (GitHub Pages / Cloudflare Workers backend / local frontend + Cloudflare backend) and the first-deploy stepper. Removed: hosting comparison table, SvelteKit base-path section, PWA, service-worker updates, Capacitor/APK, signing and keystore, Google Play. Their rows above are kept for history but no longer back any text on the page.
+
+Removed anchors in 12-deploy: `#hosting` (now `#options`), `#pages-sveltekit`, `#domain` (one line kept under `#first-deploy`), `#pwa`, `#pwa-update`, `#apk`, `#signing`, `#play`. Inbound links outside parts 02/06/07 that still point at them (for part 10): `src/lib/glossary.ts` entries `pwa`, `capacitor`, `base-path`, `service-worker`, `apk`; `src/content/ref/troubleshooting.md` rows for `#pages-sveltekit` and `#pwa-update`; `src/content/guide/10-stack-speed.md` and `00-roadmap.md` mention PWA/APK in «Деплой».
+
+Chapter 13: new `#main-rules` section with the red callout (separate non-admin user, packages and links, no personal data in the project, multi-agent backend review) and the «Ревью на безопасность» phrase; `#personal-data` rewritten (G7); `.claude/settings.json` JSON block cut to two lines (G4); the project-instructions fragment is now a PhraseCard.
+
+| Claim (short) | Chapter#anchor | URL | Checked on | Locator |
+| --- | --- | --- | --- | --- |
+| Workers: serverless platform for building and deploying apps on Cloudflare's network | 12-deploy#options | https://developers.cloudflare.com/workers/ | 2026-10-24 | "A serverless platform for building, deploying, and scaling apps" |
+| D1: Cloudflare's serverless SQL database, listed on the Workers page | 12-deploy#options | https://developers.cloudflare.com/workers/ | 2026-10-24 | "Serverless SQL database built for fast, global queries" |
+
+New ready phrases: «Ревью на безопасность» (13#main-rules), «Правила безопасности для инструкций проекта» (13#permissions).
+
+Open questions:
+- 13#main-rules says Claude is restricted from installing untrusted modules and that swapped links are a very low risk. Both come from the owner's brief, not from an official page; no source row. The reviewer should flag it if it contradicts anything on the site.
+- The TL;DR boxes of 12 and 13 still mention the phone; 12's was updated because it named PWA/APK, which are gone. 13's was left as on main.
+
 Chapter 08 rewritten for a non-technical reader: new opening section 08#how-it-fits (tests from the spec, a separate checker agent, the owner on the phone), code blocks and the Vitest/Doze details removed, each test (randomness, focus timer, daylight-saving change) explained in plain words with an optional ready phrase, and an optional review phrase in 08#review. 08#levels keeps its anchor (glossary links to it) but drops the comparison table. Sources no longer cite MDN, Vitest or Android Doze, since those claims left the page. The scratch runs above still back the facts the page keeps (seeded counts, 23-hour gap on 2026-03-29).
