@@ -1,9 +1,10 @@
 <!--
   ChapterList: card grid of a section's chapters with number, time, level and status.
+  A chapter marked in the navigation config (isHighlighted) is green with a flag.
   Props: section (id).
 -->
 <script lang="ts">
-	import { chapterKey, chapterNumber, chapterPath, chaptersOf } from '$lib/content';
+	import { chapterKey, chapterNumber, chapterPath, chaptersOf, isHighlighted, navTitle } from '$lib/content';
 	import { href } from '$lib/paths';
 	import { readMarks } from '$lib/progress.svelte';
 	import type { SectionId } from '$lib/types';
@@ -16,14 +17,16 @@
 <ol class="chapters">
 	{#each chaptersOf(section) as chapter (chapter.slug)}
 		<li>
-			<a href={href(chapterPath(chapter))} class={{ stub: chapter.stub }}>
+			<a href={href(chapterPath(chapter))} class={{ stub: chapter.stub, highlight: isHighlighted(chapter) }}>
 				<span class="top">
 					{#if chapterNumber(chapter)}<span class="num">{chapterNumber(chapter)}</span>{/if}
 					{#if readMarks.has(chapterKey(chapter))}
 						<span class="read"><Icon name="check" size={16} label="Прочитано" /></span>
+					{:else if isHighlighted(chapter)}
+						<span class="read"><Icon name="flag" size={16} /></span>
 					{/if}
 				</span>
-				<span class="title">{chapter.title}</span>
+				<span class="title">{navTitle(chapter)}</span>
 				{#if chapter.description}<span class="desc">{chapter.description}</span>{/if}
 				<span class="meta">
 					{#if chapter.stub}
@@ -101,6 +104,21 @@
 		padding-top: 0.25rem;
 		color: var(--muted);
 		font-size: var(--text-xs);
+	}
+
+	.highlight {
+		border-color: var(--green);
+		background: var(--green-soft);
+	}
+
+	.highlight:hover {
+		border-color: var(--green);
+		box-shadow: inset 0 0 0 1px var(--green);
+	}
+
+	.highlight .num,
+	.highlight .title {
+		color: var(--green-ink);
 	}
 
 	.status {
