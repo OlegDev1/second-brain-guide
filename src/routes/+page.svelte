@@ -80,7 +80,6 @@
 
 <main id="content" class="home">
 	<section class="hero">
-		<p class="eyebrow">Гайд</p>
 		<h1>Второй мозг с&nbsp;командой агентов Claude</h1>
 		<p class="lead">
 			Как собрать своё приложение «второй мозг» с командой агентов Claude — и понять, почему
@@ -94,15 +93,10 @@
 			{/if}
 			<a class="btn" href="#learn">Библиотека знаний</a>
 		</div>
-		<p class="how">
-			Первая кнопка ведёт по шагам от идеи до готового приложения. Вторая — в библиотеку: проекты
-			Claude, инструменты, термины и всё остальное по темам.
-		</p>
 	</section>
 
 	<section class="road" id="road" aria-labelledby="road-title">
 		<header class="section-head">
-			<p class="kicker">Дорога</p>
 			<h2 id="road-title">Дорога к своему второму мозгу</h2>
 			<p>
 				{steps.length} шагов от идеи до готового приложения. Иди по порядку: каждый шаг
@@ -154,8 +148,7 @@
 
 	<section class="learn" id="learn" aria-labelledby="learn-title">
 		<header class="section-head">
-			<p class="kicker">Библиотека знаний</p>
-			<h2 id="learn-title">Всё по темам</h2>
+			<h2 id="learn-title">Библиотека знаний</h2>
 			<p>
 				Проекты Claude, Git, синхронизация, агенты, токены — и всё остальное. Открывай любую тему,
 				когда нужно что-то конкретное.
@@ -164,7 +157,7 @@
 
 		{#if first}
 			<a class="overview" href={href(chapterPath(first))}>
-				<span class="overview-tag"><Icon name="flag" size={16} /> Начни отсюда</span>
+				<span class="overview-tag"><Icon name="arrow-right" size={16} /> Начни отсюда</span>
 				<span class="overview-title">Обзор: вся система на одной картинке</span>
 				<span class="overview-text">
 					Как идея превращается в ТЗ, ТЗ — в задачи для агентов, а их работа — в готовое
@@ -217,16 +210,6 @@
 		max-width: 46rem;
 	}
 
-	.eyebrow,
-	.kicker {
-		margin: 0 0 0.75rem;
-		color: var(--accent-ink);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-
 	h1 {
 		font-size: clamp(1.875rem, 1.2rem + 3vw, 3rem);
 		line-height: 1.12;
@@ -238,24 +221,18 @@
 		font-size: 1.125rem;
 	}
 
-	.how {
-		margin: 1rem 0 0;
-		color: var(--muted);
-		font-size: var(--text-small);
-	}
-
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.75rem;
-		margin-top: 1.25rem;
+		margin-top: 1.5rem;
 	}
 
 	.btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		min-height: var(--tap);
+		min-height: 3rem;
 		padding: 0 1.2rem;
 		border: 1px solid var(--line-strong);
 		border-radius: var(--radius);
@@ -356,7 +333,13 @@
 		list-style: none;
 	}
 
+	/* Cards in one row share its height; their content stays centred. */
+	.links li {
+		display: flex;
+	}
+
 	.links a {
+		flex: 1;
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
@@ -435,23 +418,23 @@
 		border-top: 1px solid var(--line);
 	}
 
-	/* The «start here» overview card: the one green item of the library. */
+	/* The «start here» overview card: blue, the one place to click first in the library. */
 	.overview {
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
 		margin-bottom: 2rem;
 		padding: 1.1rem 1.25rem;
-		border: 1.5px solid var(--green);
+		border: 1.5px solid var(--accent);
 		border-radius: var(--radius-lg);
-		background: var(--green-soft);
+		background: var(--accent-soft);
 		color: var(--ink);
 		text-decoration: none;
 		transition: box-shadow var(--dur) var(--ease);
 	}
 
 	.overview:hover {
-		box-shadow: inset 0 0 0 1px var(--green);
+		box-shadow: inset 0 0 0 1px var(--accent);
 	}
 
 	.overview-tag,
@@ -459,7 +442,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
-		color: var(--green-ink);
+		color: var(--accent-ink);
 		font-size: var(--text-xs);
 		font-weight: 700;
 		letter-spacing: 0.04em;
