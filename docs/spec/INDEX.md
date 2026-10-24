@@ -45,3 +45,11 @@ Why gates: a mistake left in one wave travels into the next. The calculator from
 - If a part turns out large, its thread uses subagents for research. It does not split the part or start other parts.
 
 Status of every part lives in `docs/PROGRESS.md`.
+
+## Fixes wave (2026-10-24)
+
+Brief, saved verbatim: `docs/spec/waves/fixes-wave.md`, with the agent workflow diagram `docs/spec/waves/agents-scheme.png`. Its global rules G1–G7 and the new workflow (Opus builds in its own branch and reports done; Sonnet reviews quickly and opens the PR; only the owner merges; nobody waits for a merge) are in `00-general.md`, which now wins over the wave-gate rules above.
+
+- No part files for this wave: each thread gets its task IDs, G1–G7 and the exact files it owns from the coordinator.
+- Builder 1 owns the shared files: sidebar, top bar, right TOC, global styles, home page, diagram components, the Sources styling, chapter `00-roadmap` (now «Введение», N1 and N2) and `docs/spec`. Builders 2–5 own chapter content.
+- Don't touch the Advanced section.

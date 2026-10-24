@@ -2,6 +2,7 @@
   ReadingBar: slim sticky bar on every chapter page.
   Left: chapter → sheet with all chapters (#16, #11). Middle: current section → list of
   sections (#12). Right: search (#15) and previous / next (#14). A 2 px progress line below.
+  From 1024 px the chapter selector is hidden: the sidebar already lists every chapter.
   Props: chapter, headings, active (id of the heading on screen), progress (0–1).
 -->
 <script lang="ts">
@@ -11,6 +12,7 @@
 		chapterNumber,
 		chapterPath,
 		chaptersOf,
+		navTitle,
 		neighbours,
 		SECTIONS,
 		sectionOf,
@@ -123,7 +125,7 @@
 							onclick={() => (chaptersOpen = false)}
 						>
 							{#if chapterNumber(item)}<span class="num">{chapterNumber(item)}</span>{/if}
-							<span class="title">{item.title}</span>
+							<span class="title">{navTitle(item)}</span>
 							{#if readMarks.has(chapterKey(item))}
 								<span class="read"><Icon name="check" size={16} label="Прочитано" /></span>
 							{/if}
@@ -400,8 +402,14 @@
 			color: var(--ink);
 		}
 
+		/* The left sidebar lists every chapter on desktop, so the bar drops the chapter selector. */
 		.chapter {
-			max-width: 22rem;
+			display: none;
+		}
+
+		.section {
+			border-left: 0;
+			border-radius: 8px;
 		}
 	}
 </style>

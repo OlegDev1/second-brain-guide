@@ -206,3 +206,5 @@ New ready phrases: «Ревью на безопасность» (13#main-rules),
 Open questions:
 - 13#main-rules says Claude is restricted from installing untrusted modules and that swapped links are a very low risk. Both come from the owner's brief, not from an official page; no source row. The reviewer should flag it if it contradicts anything on the site.
 - The TL;DR boxes of 12 and 13 still mention the phone; 12's was updated because it named PWA/APK, which are gone. 13's was left as on main.
+
+Chapter 08 rewritten for a non-technical reader: new opening section 08#how-it-fits (tests from the spec, a separate checker agent, the owner on the phone), code blocks and the Vitest/Doze details removed, each test (randomness, focus timer, daylight-saving change) explained in plain words with an optional ready phrase, and an optional review phrase in 08#review. 08#levels keeps its anchor (glossary links to it) but drops the comparison table. Sources no longer cite MDN, Vitest or Android Doze, since those claims left the page. The scratch runs above still back the facts the page keeps (seeded counts, 23-hour gap on 2026-03-29).

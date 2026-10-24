@@ -59,6 +59,23 @@ export function chapterKey(chapter: Chapter): string {
 	return `${chapter.section}/${chapter.slug}`;
 }
 
+/**
+ * Navigation overrides by chapter key: a label for the sidebar and chapter lists, and the green
+ * «must-read» highlight with a flag icon. The chapter page title still comes from frontmatter.
+ */
+const NAV: Record<string, { label?: string; highlight?: boolean }> = {
+	'guide/15-your-prompt': { label: 'Промпт для старта', highlight: true }
+};
+
 export function shortTitle(chapter: Chapter): string {
-	return chapter.short ?? chapter.title;
+	return NAV[chapterKey(chapter)]?.label ?? chapter.short ?? chapter.title;
+}
+
+/** Full title for lists, with the navigation label taking precedence. */
+export function navTitle(chapter: Chapter): string {
+	return NAV[chapterKey(chapter)]?.label ?? chapter.title;
+}
+
+export function isHighlighted(chapter: Chapter): boolean {
+	return NAV[chapterKey(chapter)]?.highlight === true;
 }
