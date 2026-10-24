@@ -1,33 +1,62 @@
 <script lang="ts">
 	import ChapterList from '$lib/components/layout/ChapterList.svelte';
+	import Icon from '$lib/components/layout/Icon.svelte';
 	import SiteFooter from '$lib/components/layout/SiteFooter.svelte';
 	import SiteHeader from '$lib/components/layout/SiteHeader.svelte';
-	import { SECTIONS } from '$lib/content';
+	import { chapterKey, chapterNumber, chapterPath, getChapter, sectionOf } from '$lib/content';
 	import { href } from '$lib/paths';
-	import type { SectionId } from '$lib/types';
+	import { readMarks } from '$lib/progress.svelte';
+	import type { Chapter } from '$lib/types';
 
-	let tab = $state<SectionId>('guide');
-
-	// Static roadmap of the path (catalog #09); each node links to its chapter.
-	const ROADMAP = [
-		{ label: 'Идея', path: '/guide/00-roadmap/' },
-		{ label: 'ТЗ', path: '/guide/03-specs-prompts/' },
-		{ label: 'Проект', path: '/guide/02-project/' },
-		{ label: 'Каркас', path: '/guide/11-architecture/' },
-		{ label: 'Фичи циклами', path: '/guide/07-agent-team/' },
-		{ label: 'Скорость', path: '/guide/10-stack-speed/' },
-		{ label: 'Телефон', path: '/guide/12-deploy/' }
+	// The road: guide chapters grouped into steps a beginner can follow in order.
+	const ROAD = [
+		{
+			title: 'Понять, как это устроено',
+			text: 'Что такое агент и почему метод работает. Без этого всё остальное похоже на магию.',
+			slugs: ['00-roadmap', '01-how-agents-work']
+		},
+		{
+			title: 'Придумать и описать приложение',
+			text: 'Превращаешь идею в понятное ТЗ и готовишь проект, в котором будут работать агенты.',
+			slugs: ['02-project', '03-specs-prompts', '04-project-files']
+		},
+		{
+			title: 'Подготовить рабочее место',
+			text: 'Каждая версия сохранена, данные не теряются — ошибки перестают быть страшными.',
+			slugs: ['05-git-github', '06-sync']
+		},
+		{
+			title: 'Строить с командой агентов',
+			text: 'Ставишь задачи агентам, проверяешь их работу и не сжигаешь лимит.',
+			slugs: ['07-agent-team', '08-testing', '09-tokens-limits']
+		},
+		{
+			title: 'Сделать быстрым и прочным',
+			text: 'Стек и устройство приложения, чтобы оно выдержало десятки модулей.',
+			slugs: ['10-stack-speed', '11-architecture']
+		},
+		{
+			title: 'Запустить на телефоне',
+			text: 'Ссылка и иконка на телефоне, а ключи и личные данные — под защитой.',
+			slugs: ['12-deploy', '13-security']
+		},
+		{
+			title: 'Твой ход',
+			text: 'Весь метод на живом примере и готовый промпт, с которого начнётся твой проект.',
+			slugs: ['14-how-this-site-was-made', '15-your-prompt']
+		}
 	];
 
-	function onkeydown(event: KeyboardEvent) {
-		const step = event.key === 'ArrowRight' ? 1 : event.key === 'ArrowLeft' ? -1 : 0;
-		if (!step) return;
-		event.preventDefault();
-		const i = SECTIONS.findIndex((s) => s.id === tab);
-		const next = SECTIONS[(i + step + SECTIONS.length) % SECTIONS.length];
-		tab = next.id;
-		document.getElementById(`tab-${next.id}`)?.focus();
-	}
+	const steps = ROAD.map((step) => ({
+		...step,
+		chapters: step.slugs
+			.map((slug) => getChapter('guide', slug))
+			.filter((c): c is Chapter => c !== undefined)
+	}));
+
+	const first = steps[0]?.chapters[0];
+	const ref = sectionOf('ref');
+	const advanced = sectionOf('advanced');
 </script>
 
 <svelte:head>
@@ -48,48 +77,90 @@
 			Как собрать своё приложение «второй мозг» с командой агентов Claude — и понять, почему
 			этот метод работает.
 		</p>
+		<p class="how">
+			Читать можно двумя способами: пройти дорогу шаг за шагом или сразу открыть нужную тему.
+		</p>
+		<div class="actions">
+			{#if first}
+				<a class="btn primary" href={href(chapterPath(first))}>
+					Начать с шага 1 <Icon name="arrow-right" size={18} />
+				</a>
+			{/if}
+			<a class="btn" href="#learn">Всё по темам</a>
+		</div>
 	</section>
 
-	<section class="roadmap" aria-labelledby="roadmap-title">
-		<h2 id="roadmap-title">Путь</h2>
-		<ol>
-			{#each ROADMAP as node, i (node.path)}
-				<li><a href={href(node.path)}><span class="num">{i + 1}</span>{node.label}</a></li>
+	<section class="road" id="road" aria-labelledby="road-title">
+		<header class="section-head">
+			<p class="kicker">Дорога</p>
+			<h2 id="road-title">Дорога к своему второму мозгу</h2>
+			<p>
+				{steps.length} шагов от идеи до приложения на телефоне. Иди по порядку: каждый шаг
+				опирается на предыдущие.
+			</p>
+		</header>
+
+		<ol class="steps">
+			{#each steps as step, i (step.title)}
+				<li class="step">
+					<span class="dot" aria-hidden="true">{i + 1}</span>
+					<div class="step-body">
+						<h3><span class="visually-hidden">Шаг {i + 1}. </span>{step.title}</h3>
+						<p class="step-text">{step.text}</p>
+						<ul class="links">
+							{#each step.chapters as chapter (chapter.slug)}
+								<li>
+									<a href={href(chapterPath(chapter))} class={{ stub: chapter.stub }}>
+										<span class="num">{chapterNumber(chapter)}</span>
+										<span class="title">{chapter.title}</span>
+										<span class="meta">
+											{#if readMarks.has(chapterKey(chapter))}
+												<span class="read">
+													<Icon name="check" size={16} label="Прочитано" />
+												</span>
+											{/if}
+											{#if chapter.stub}
+												<span class="status">в работе</span>
+											{:else if chapter.time}
+												<span>{chapter.time} мин</span>
+											{/if}
+										</span>
+									</a>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				</li>
 			{/each}
 		</ol>
+
+		<p class="all"><a href={href('/guide/')}>Все главы гайда одним списком</a></p>
 	</section>
 
-	<section class="hub" aria-label="Разделы гайда">
-		<div class="tabs" role="tablist" aria-label="Разделы">
-			{#each SECTIONS as section (section.id)}
-				<button
-					type="button"
-					role="tab"
-					id="tab-{section.id}"
-					aria-selected={tab === section.id}
-					aria-controls="panel-{section.id}"
-					tabindex={tab === section.id ? 0 : -1}
-					onclick={() => (tab = section.id)}
-					{onkeydown}
-				>
-					{section.label}
-				</button>
-			{/each}
-		</div>
-		{#each SECTIONS as section (section.id)}
-			<div
-				role="tabpanel"
-				id="panel-{section.id}"
-				aria-labelledby="tab-{section.id}"
-				hidden={tab !== section.id}
-			>
-				<div class="panel-head">
-					<p>{section.lead}</p>
-					<a href={href(`/${section.id}/`)}>Открыть раздел</a>
-				</div>
-				<ChapterList section={section.id} />
+	<section class="learn" id="learn" aria-labelledby="learn-title">
+		<header class="section-head">
+			<p class="kicker">Библиотека</p>
+			<h2 id="learn-title">Изучить всё по темам</h2>
+			<p>Когда нужно что-то конкретное: фраза для агента, термин, чек-лист или тема поглубже.</p>
+		</header>
+
+		<div class="shelf">
+			<div class="shelf-head">
+				<h3>{ref.label}</h3>
+				<p>{ref.lead}</p>
+				<a href={href(`/${ref.id}/`)}>Открыть раздел</a>
 			</div>
-		{/each}
+			<ChapterList section={ref.id} />
+		</div>
+
+		<div class="shelf">
+			<div class="shelf-head">
+				<h3>{advanced.label}</h3>
+				<p>{advanced.lead}</p>
+				<a href={href(`/${advanced.id}/`)}>Открыть раздел</a>
+			</div>
+			<ChapterList section={advanced.id} />
+		</div>
 	</section>
 </main>
 
@@ -103,11 +174,12 @@
 	}
 
 	.hero {
-		padding: 3rem 0 2rem;
+		padding: 3rem 0 2.5rem;
 		max-width: 46rem;
 	}
 
-	.eyebrow {
+	.eyebrow,
+	.kicker {
 		margin: 0 0 0.75rem;
 		color: var(--accent-ink);
 		font-size: var(--text-xs);
@@ -127,117 +199,225 @@
 		font-size: 1.125rem;
 	}
 
-	.roadmap {
-		margin-bottom: 2.5rem;
+	.how {
+		margin: 1.25rem 0 0;
 	}
 
-	.roadmap h2 {
-		margin: 0 0 0.75rem;
-		font-size: var(--text-xs);
-		color: var(--muted);
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
-	}
-
-	.roadmap ol {
+	.actions {
 		display: flex;
 		flex-wrap: wrap;
+		gap: 0.75rem;
+		margin-top: 1.25rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.5rem;
+		min-height: var(--tap);
+		padding: 0 1.2rem;
+		border: 1px solid var(--line-strong);
+		border-radius: var(--radius);
+		background: var(--surface);
+		color: var(--ink);
+		font-weight: 650;
+		text-decoration: none;
+	}
+
+	.btn:hover {
+		border-color: var(--accent);
+	}
+
+	.btn.primary {
+		border-color: var(--accent);
+		background: var(--accent);
+		color: var(--on-accent);
+	}
+
+	.section-head {
+		max-width: 46rem;
+		margin-bottom: 1.5rem;
+	}
+
+	.section-head h2 {
+		margin: 0;
+		font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+		line-height: 1.2;
+	}
+
+	.section-head p:last-child {
+		margin: 0.6rem 0 0;
+		color: var(--muted);
+	}
+
+	/* Road: a numbered vertical line of steps. */
+	.road {
+		padding: 2rem 0 1rem;
+		border-top: 1px solid var(--line);
+	}
+
+	.steps {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	.step {
+		position: relative;
+		display: grid;
+		grid-template-columns: 2.25rem 1fr;
+		gap: 0 1rem;
+		padding-bottom: 1.75rem;
+	}
+
+	.step:not(:last-child)::before {
+		content: '';
+		position: absolute;
+		top: 2.5rem;
+		bottom: 0.25rem;
+		left: calc(1.125rem - 1px);
+		width: 2px;
+		background: var(--line-strong);
+	}
+
+	.dot {
+		display: grid;
+		place-items: center;
+		width: 2.25rem;
+		height: 2.25rem;
+		border-radius: 50%;
+		background: var(--blue-soft);
+		color: var(--blue-ink);
+		font-weight: 700;
+	}
+
+	.step-body {
+		min-width: 0;
+	}
+
+	.step h3 {
+		margin: 0.3rem 0 0;
+		font-size: 1.2rem;
+		line-height: 1.3;
+	}
+
+	.step-text {
+		margin: 0.35rem 0 0.75rem;
+		color: var(--muted);
+		max-width: 46rem;
+	}
+
+	.links {
+		display: grid;
 		gap: 0.5rem;
 		margin: 0;
 		padding: 0;
 		list-style: none;
 	}
 
-	.roadmap a {
+	.links a {
 		display: flex;
 		align-items: center;
-		gap: 0.5rem;
+		gap: 0.75rem;
 		min-height: var(--tap);
-		padding: 0 0.9rem 0 0.4rem;
-		border: 1px solid var(--line-strong);
-		border-radius: 999px;
+		padding: 0.6rem 0.9rem;
+		border: 1px solid var(--line);
+		border-radius: var(--radius-lg);
 		background: var(--surface);
 		color: var(--ink);
-		font-weight: 600;
 		text-decoration: none;
+		transition: border-color var(--dur) var(--ease);
 	}
 
-	.roadmap a:hover {
-		border-color: var(--blue);
+	.links a:hover {
+		border-color: var(--accent);
 	}
 
-	.num {
-		display: grid;
-		place-items: center;
-		width: 1.75rem;
-		height: 1.75rem;
-		border-radius: 50%;
-		background: var(--blue-soft);
-		color: var(--blue-ink);
+	.links .num {
+		flex: none;
+		font-family: var(--font-mono);
+		font-size: var(--text-xs);
+		color: var(--accent-ink);
+	}
+
+	.links .title {
+		flex: 1;
+		min-width: 0;
+		font-weight: 600;
+		line-height: 1.35;
+	}
+
+	.links .meta {
+		display: flex;
+		align-items: center;
+		gap: 0.4rem;
+		flex: none;
+		color: var(--muted);
 		font-size: var(--text-xs);
 	}
 
-	.tabs {
+	.read {
 		display: flex;
-		gap: 0.25rem;
-		margin-bottom: 1.25rem;
-		padding: 4px;
-		border: 1px solid var(--line);
-		border-radius: 14px;
-		background: var(--sunk);
-		overflow-x: auto;
+		color: var(--green);
 	}
 
-	.tabs button {
-		flex: 1 0 auto;
-		min-height: var(--tap);
-		padding: 0 0.75rem;
-		border: 0;
-		border-radius: 10px;
-		background: none;
+	.status {
+		color: var(--amber-ink);
+	}
+
+	.stub .title {
 		color: var(--muted);
-		font-weight: 600;
-		cursor: pointer;
 	}
 
-	.tabs button:hover {
-		color: var(--ink);
+	.all {
+		margin: 0 0 0 3.25rem;
 	}
 
-	.tabs button[aria-selected='true'] {
-		background: var(--surface);
-		color: var(--ink);
-		box-shadow: 0 0 0 1px var(--line-strong);
+	/* Learn: reference and advanced, as card grids. */
+	.learn {
+		margin-top: 2.5rem;
+		padding: 2rem 0 1rem;
+		border-top: 1px solid var(--line);
 	}
 
-	.panel-head {
+	.shelf {
+		margin-bottom: 2rem;
+	}
+
+	.shelf-head {
 		display: flex;
 		flex-wrap: wrap;
 		align-items: baseline;
-		justify-content: space-between;
-		gap: 0.5rem 1rem;
+		gap: 0.25rem 1rem;
 		margin-bottom: 1rem;
 	}
 
-	.panel-head p {
+	.shelf-head h3 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+
+	.shelf-head p {
+		flex: 1 1 16rem;
 		margin: 0;
 		color: var(--muted);
 	}
 
 	@media (min-width: 640px) {
-		.tabs {
-			width: fit-content;
-		}
-
-		.tabs button {
-			flex: none;
-			padding: 0 1.1rem;
+		.links {
+			grid-template-columns: repeat(2, 1fr);
 		}
 	}
 
 	@media (min-width: 768px) {
 		.hero {
-			padding: 4.5rem 0 2.5rem;
+			padding: 4.5rem 0 3rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.links {
+			grid-template-columns: repeat(3, 1fr);
 		}
 	}
 </style>
