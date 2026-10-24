@@ -97,7 +97,6 @@
 
 	<section class="road" id="road" aria-labelledby="road-title">
 		<header class="section-head">
-			<p class="kicker">Дорога</p>
 			<h2 id="road-title">Дорога к своему второму мозгу</h2>
 			<p>
 				{steps.length} шагов от идеи до готового приложения. Иди по порядку: каждый шаг
@@ -344,7 +343,13 @@
 		list-style: none;
 	}
 
+	/* Cards in one row share its height; their content stays centred. */
+	.links li {
+		display: flex;
+	}
+
 	.links a {
+		flex: 1;
 		display: flex;
 		align-items: center;
 		gap: 0.75rem;
