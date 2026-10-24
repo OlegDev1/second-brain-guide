@@ -207,3 +207,32 @@ react-dom 19.3.1, svelte 5.57.2, solid-js 1.9.17, lit 3.3.3. Measured 2026-10-23
 ## Fixes wave (2026-10-24), chapter 06
 
 Chapter 06 was rewritten around one path: you write the spec → a cloud thread → push to GitHub → deploy to a server or download to your device (new diagram in `#code-path`). Added a G1 intro (`#what-is-sync`) and the Library-vs-GitHub split in `#library-copies` (specs, progress files and notes live on GitHub and survive deleting the project). The laptop part (`#thread-copy`, `#pull`, `#both-sides`, `claude --teleport`) is cut to two lines in `#devices`; `#hosting` folded into `#code-path`; the Safari/eviction Deeper and `#backup-place` cut to one paragraph. Kept anchors with inbound links: `#commit-often`, `#library-copies`, `#data-on-phone`, `#backup`. The "Laptop pull" run above no longer backs any text on the page.
+
+## Fixes wave (2026-10-24), chapters 10 and 11
+
+- Chapter 11 reworked for a non-technical reader: plain intro and four terms (module, core, data
+  model, event), the two halves of a repository, our own repository folder by folder, the second
+  brain's architecture as short plain subsections plus one Accordion with the agent-level details,
+  and three other architecture patterns with a ready phrase each. Code samples removed from the main
+  text; the agent details keep the module folder tree only. Incoming anchors kept: `item`, `module`,
+  `events`, `one-thread-one-folder`, `versions`, `export`.
+- Source for "our repository" (11#our-repo): the repository tree on `main` at 2026-10-24
+  (`CLAUDE.md`, `docs/spec/{00-general.md,INDEX.md,parts/}`, `docs/PROGRESS.md`, `docs/DECISIONS.md`,
+  `docs/STYLE.md`, `docs/COMPONENTS.md`, `docs/parts/`, `docs/reviews/`, `src/content/`,
+  `src/lib/components/`, `src/routes/`, `static/`, `config/`, `.github/workflows/deploy.yml` runs on
+  push to `main`). No `.claude/skills/` in the repository.
+- Chapter 10: new plain intro on what a stack is and where the choice is recorded; framework
+  CompareTable, Svelte code sample, bundle-size code block and notification CompareTable replaced by
+  plain text; DevTools steps cut to one line and a link; "Common.js" callout shortened to one line.
+  Removed sources no longer cited: React Render and Commit, React Compiler, SQLite WASM, MDN import(),
+  Chrome Performance panel.
+
+### New terms
+
+| EN | RU | Definition |
+| --- | --- | --- |
+| architecture | архитектура | Plan of the app: what lives where and who talks to whom |
+| data model | модель данных | Shape of the data: which fields a record has; not the neural network |
+| core | ядро | Shared part every module relies on: storage, menu, shared controls |
+| event | событие | "Something happened" message a module broadcasts to the others |
+| stack | стек | Set of tools the app is built from |

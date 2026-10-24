@@ -54,3 +54,14 @@ Merged: 23 seed terms + 51 new terms from parts 02–09. Left out as too narrow 
 1. **Usage numbers for chapter 14.** The part file says to ask the owner for the limit used (Usage) and not estimate it. Chapter 14 leaves this out; the owner can send the numbers and a short section can be added.
 2. **Term wrapping.** To save time, the pass did not wrap the first occurrence of every glossary term in every chapter; existing `<Term>` usage was kept and fixed. A later pass can add more.
 3. **Thread count for chapter 14** is not stated: git history shows PRs, not threads.
+
+## Fixes wave (2026-10-24)
+
+- Glossary: added `architecture`, `data-model`, `core`, `event`, `stack`; `module` reworded.
+- Phrases: new «Архитектура» group (three architecture prompts and «Скорость в ТЗ» from chapters 10
+  and 11); «Новый модуль» now says «список модулей» instead of «реестр».
+- Troubleshooting: plain-language causes for the deploy, PWA update and timer rows; removed the
+  Dexie `TransactionInactiveError` row (Advanced-only); added a row for a missing folder map in
+  `CLAUDE.md`.
+- Chapters 01 and 09 (part 03) got a plain-language opening section (`#why`); chapter 09's price
+  table and the quadratic-sum code block became plain text.
