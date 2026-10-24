@@ -164,7 +164,7 @@
 
 		{#if first}
 			<a class="overview" href={href(chapterPath(first))}>
-				<span class="overview-tag"><Icon name="flag" size={16} /> Начни отсюда</span>
+				<span class="overview-tag"><Icon name="arrow-right" size={16} /> Начни отсюда</span>
 				<span class="overview-title">Обзор: вся система на одной картинке</span>
 				<span class="overview-text">
 					Как идея превращается в ТЗ, ТЗ — в задачи для агентов, а их работа — в готовое
@@ -435,23 +435,23 @@
 		border-top: 1px solid var(--line);
 	}
 
-	/* The «start here» overview card: the one green item of the library. */
+	/* The «start here» overview card: blue, the one place to click first in the library. */
 	.overview {
 		display: flex;
 		flex-direction: column;
 		gap: 0.4rem;
 		margin-bottom: 2rem;
 		padding: 1.1rem 1.25rem;
-		border: 1.5px solid var(--green);
+		border: 1.5px solid var(--accent);
 		border-radius: var(--radius-lg);
-		background: var(--green-soft);
+		background: var(--accent-soft);
 		color: var(--ink);
 		text-decoration: none;
 		transition: box-shadow var(--dur) var(--ease);
 	}
 
 	.overview:hover {
-		box-shadow: inset 0 0 0 1px var(--green);
+		box-shadow: inset 0 0 0 1px var(--accent);
 	}
 
 	.overview-tag,
@@ -459,7 +459,7 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.35rem;
-		color: var(--green-ink);
+		color: var(--accent-ink);
 		font-size: var(--text-xs);
 		font-weight: 700;
 		letter-spacing: 0.04em;
