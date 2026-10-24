@@ -148,8 +148,7 @@
 
 	<section class="learn" id="learn" aria-labelledby="learn-title">
 		<header class="section-head">
-			<p class="kicker">Библиотека знаний</p>
-			<h2 id="learn-title">Всё по темам</h2>
+			<h2 id="learn-title">Библиотека знаний</h2>
 			<p>
 				Проекты Claude, Git, синхронизация, агенты, токены — и всё остальное. Открывай любую тему,
 				когда нужно что-то конкретное.
@@ -209,15 +208,6 @@
 	.hero {
 		padding: 3rem 0 2.5rem;
 		max-width: 46rem;
-	}
-
-	.kicker {
-		margin: 0 0 0.75rem;
-		color: var(--accent-ink);
-		font-size: var(--text-xs);
-		font-weight: 700;
-		letter-spacing: 0.08em;
-		text-transform: uppercase;
 	}
 
 	h1 {
