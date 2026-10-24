@@ -111,3 +111,17 @@ All rows checked on 2026-10-23. `02#` means `/guide/02-project#…`, `07#` means
 
 - The deck (slide 7) words the METR result as "models of 2025"; METR's post says "current models" (March 2025). The chapter says «модели начала 2025 года» and adds the doubling trend in «Глубже». Reviewer may tighten if needed.
 - The original HTML recommends Max $100 and thinking modes "Extra/Max"; chapter 02 doesn't repeat plan advice, which belongs to part 03 (tokens and limits).
+
+## Fixes wave (2026-10-24)
+
+Chapter 07 restructured: one model (coordinator + agents, each a thread), roles set in the spec (`00-general.md`, `parts/`, `INDEX.md`, `PROGRESS.md`, `reviews/`), the build/check flow (Opus builds and its thread closes; Sonnet checks, sends issues back or opens the PR; the user merges), models with reasoning effort per role. Haiku removed from chapters 02, 07 and 08. Agent-teams and subagent detail cut to two sentences (07#subagents). Chapter 02 text aligned with the same flow; the example project instructions point to `docs/spec/`.
+
+| Claim (short) | Chapter#anchor | URL | Checked on | Locator |
+| --- | --- | --- | --- | --- |
+| Effort levels are low, medium, high, xhigh, max; the set depends on the model | 07#models | https://code.claude.com/docs/en/model-config | 2026-10-24 | "Adjust effort level": "the available effort levels depend on the model" |
+| Coordinator model/effort and Thread model/effort are set in Project settings > General; new project: high for threads, low for the conversation | 07#models, 02#first-run | https://code.claude.com/docs/en/claude-projects | 2026-10-24 | "Choose models and let Claude manage context": "Coordinator model and Coordinator effort apply to Claude" |
+| Model and effort per role (coordinator Opus Max/xhigh, builders Opus High/xhigh, checks and minor tasks Sonnet High, bug hunting Opus High) | 07#models | Owner's brief for the fixes wave | 2026-10-24 | Presented on the page as how this site was built, not as an Anthropic recommendation |
+| A thread that opened a PR watches it and wakes on CI and comments | 07#hidden-costs, 07#build-check | https://code.claude.com/docs/en/claude-projects | 2026-10-23 | "See and reduce a project's usage" (existing row, reused for why the checker opens the PR) |
+
+- 07#threads says agents can message each other directly when one's work depends on another's. The public Projects page only says threads report back to the conversation; the direct thread-to-thread message is what threads in this very project can do (observed 2026-10-24). Re-check against the docs when they mention it.
+- The «Коротко» box in chapter 07 still mentions a subagent helper; it was left as on main by instruction (PR #13 owned those boxes).
