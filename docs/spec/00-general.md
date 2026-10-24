@@ -15,11 +15,11 @@ Site content: Russian, informal «ты». Everything else agents write — code,
 
 ## Site structure
 
-Three top tabs: **Гайд** (`/guide`), **Advanced** (`/advanced`), **Справочник** (`/ref`). Home `/` is a hub with a roadmap.
+Three top tabs: **Гайд** (`/guide`), **Advanced** (`/advanced`), **Справочник** (`/ref`). Home `/` is a hub with two blocks: the step-by-step build guide and the knowledge library.
 
 Slug map — use these for cross-links even if the target chapter is not written yet:
 
-- Guide: `00-roadmap`, `01-how-agents-work`, `02-project`, `03-specs-prompts`, `04-project-files`, `05-git-github`, `06-sync`, `07-agent-team`, `08-testing`, `09-tokens-limits`, `10-stack-speed`, `11-architecture`, `12-deploy`, `13-security`, `14-how-this-site-was-made`, `15-your-prompt`
+- Guide: `00-roadmap` (titled «Введение» since the fixes wave; the slug is kept so old links work), `01-how-agents-work`, `02-project`, `03-specs-prompts`, `04-project-files`, `05-git-github`, `06-sync`, `07-agent-team`, `08-testing`, `09-tokens-limits`, `10-stack-speed`, `11-architecture`, `12-deploy`, `13-security`, `14-how-this-site-was-made`, `15-your-prompt`
 - Advanced: `a1-local-first`, `a2-integrations`, `a3-claude-code-advanced`, `a4-ci-cd`, `a5-performance`, `a6-economics`, `a7-large-teams`
 - Reference: `phrases`, `glossary`, `checklists`, `troubleshooting`, `sources`
 
@@ -86,19 +86,54 @@ Part 01 seeds the glossary tooltips from this table. New terms go into your note
 - No source, no number. Paraphrase; a quote stays under 15 words, one per source.
 - Run every git or terminal command shown in a chapter in a scratch repository before the PR.
 
+## Global rules G1–G7 (every chapter, from the fixes wave on)
+
+Set by the owner in the fixes wave brief (`docs/spec/waves/fixes-wave.md`). Target reader: a non-technical person building the "second brain" with Claude Projects; the guide is centred on our project, but someone building something else must be able to follow it.
+
+- **G1 Context first.** Every chapter opens with a short plain-language intro: what this part is, how it works, how it fits into the Project and what problem it solves. Optionally a small diagram, then the detailed blocks. An explanation, not a summary. Example for Sync: context stored on GitHub survives deleting the Project and can be used any time, from any device, by any agent.
+- **G2 Tie everything to Projects.** For each feature, say what it does, how it connects to the Project, and how to use it there.
+- **G3 Trim off-topic content.** Directly related to Projects or our workflow: normal depth. Indirectly related (generic git, plain Claude Code commands, "laptop pulls the code"): 1–2 lines. Unrelated: remove. Never remove anything that is actually needed.
+- **G4 Plain language.** Replace tables and code snippets that need a technical background with plain text or a simple diagram. Technical internals (e.g. SvelteKit) are the agents' job, not the reader's.
+- **G5 General plus our project.** Our project is the main worked example, but phrase things so they apply to other projects too.
+- **G6 Sources block.** Keep the «Источники» heading; the text under it is smaller (and dimmer). Styled globally in `src/app.css`, chapters need no markup for it.
+- **G7 No personal data.** No example on the site suggests putting personal data into the Project, the spec or an agent's context. Where one does, remove it and point to «Безопасность» (`/guide/13-security`).
+
+The "Advanced" section is not touched unless the owner asks.
+
 ## Workflow
 
-- **Reading rule.** A part thread reads only this file, `docs/STYLE.md` (after part 02) and its own part file. It opens `docs/PROGRESS.md` only to update its own row. It never opens other part files, `INDEX.md` or the source materials in the Library, unless its own part file names them. Only the coordinator reads `INDEX.md`. Use subagents for research so the thread stays small.
-- One part = one thread = one branch = one PR. Edit only the files your part owns. The single exception is part 10, which may align terminology and fix links in every chapter (see its part file).
-- Before the PR: `npm run build` and `npm run check` pass; paste their summary lines. No test files, no CI, never touch the GitHub Pages deploy setup.
-- Commit and push work in progress regularly.
-- **Writer:** one thread on Opus, high effort. It writes the part and opens the PR. Once the PR is open, the writer thread is closed and gets no more messages.
-- **Reviewer:** after the PR, one separate thread on Sonnet, high effort, reviews it. It reads only this file, the part's notes file and the pages it checks. No Haiku review, no extra tests, no deep analysis.
-  - **Fact-check:** goes through your Sources table — opens each saved URL and confirms it supports the claim; searches anew only when a link is dead or doesn't support it.
-  - **Frontend skim:** runs the site locally and quickly looks at the new pages at about 360 px and 1440 px wide, light and dark theme, for layout bugs. If no browser is available, it says so and skips this step.
-  - It fixes what it finds, settles open items with its own judgment, and writes a short `docs/reviews/NN-<slug>.md` (what was checked, what was fixed).
-  - When `npm run build` and `npm run check` pass, it merges the PR. This is the only case where a thread merges into `main`.
-- **Wave gate.** A wave is closed only when every PR in it is merged by its reviewer after a passing build and check. An error left in one wave travels into the next.
+From the fixes wave (2026-10-24) on, these rules replace the earlier writer / reviewer / wave-gate rules. Where older text in this file or a part file says otherwise (reviewer merges, fact-checks against URLs, commands run in a scratch repository), this section wins.
+
+- **Reading rule.** A thread gets only the context for its own tasks: its task IDs, the global rules G1–G7 and the exact files it owns. Not the whole brief, not the whole repo. It opens `docs/PROGRESS.md` only to update its own row. Only the coordinator reads `INDEX.md`.
+- **Files never overlap** between parallel threads. Shared files (sidebar, global styles, home page, top bar) belong to one thread only.
+- No test files, no CI, never touch the GitHub Pages deploy setup.
+
+### Roles
+
+**Opus 5.5 (high) does all the work:**
+
+- Writes and rewrites text.
+- Restructures chapters: blocks, order, organisation.
+- Changes the visual layout so the site looks clean and clear.
+- Builds new elements (diagrams, buttons, dropdowns).
+- No tests: Opus writes none, runs none and doesn't check buttons. If `npm run build` passes, that's enough.
+
+**Sonnet (high) only checks, and quickly:**
+
+1. **Text:** logic and consistency only. Does it make sense, match the rest of the site and the repo, contain no contradictions, and was nothing needed deleted? No external links, no web fact-checks: the sources are already in the project.
+2. **New interactive elements only:** a quick check that each one works (a button toggles there and back, a link opens the right chapter). 1–2 checks per element, no more.
+3. **Layout:** a quick look that the chapter looks OK on mobile and desktop.
+
+No test suites, no writing tests, no repeated builds, no screenshot loops. No Haiku anywhere.
+
+### Flow per task
+
+1. Opus works in its own branch, commits, pushes and reports done. Its thread is then closed.
+2. Sonnet reviews that branch.
+3. If there are issues, they go back to Opus. If not, Sonnet opens the PR, and Opus isn't messaged again.
+4. Only the owner merges PRs. Agents never merge, and nobody waits for the merge: the other threads keep working in parallel.
+
+- Never force push or delete branches without the owner's OK.
 - Missing access, fact or decision: say exactly what is missing and stop. Never invent.
 
 ## Source materials in the project Library

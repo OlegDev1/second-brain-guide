@@ -79,7 +79,7 @@
 <div class="layout">
 	<aside class="left">
 		<div class="sticky">
-			<SectionTree {chapter} {headings} {active} />
+			<SectionTree {chapter} />
 		</div>
 	</aside>
 

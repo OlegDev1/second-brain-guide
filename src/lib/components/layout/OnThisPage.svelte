@@ -1,5 +1,6 @@
 <!--
   OnThisPage: the chapter's sections beside the text from 1024 px (catalog #12).
+  `##` sections are larger and darker; `###` subsections are indented, smaller and muted.
   Props: headings, active (id of the section on screen).
 -->
 <script lang="ts">
@@ -43,28 +44,41 @@
 	a {
 		display: block;
 		margin-left: -1px;
-		padding: 0.3rem 0 0.3rem 0.85rem;
+		padding: 0.35rem 0 0.35rem 0.85rem;
 		border-left: 2px solid transparent;
-		color: var(--muted);
-		font-size: var(--text-xs);
-		line-height: 1.4;
+		color: var(--ink);
+		font-size: var(--text-small);
+		font-weight: 550;
+		line-height: 1.35;
 		text-decoration: none;
 		transition:
 			color var(--dur) var(--ease),
 			border-color var(--dur) var(--ease);
 	}
 
+	li:not(.sub) + li:not(.sub) a,
+	.sub + li:not(.sub) a {
+		margin-top: 0.35rem;
+	}
+
 	.sub a {
-		padding-left: 1.6rem;
+		padding: 0.2rem 0 0.2rem 1.75rem;
+		color: var(--muted);
+		font-size: var(--text-xs);
+		font-weight: 400;
 	}
 
 	a:hover {
-		color: var(--ink);
+		color: var(--accent-ink);
 	}
 
 	a[aria-current='location'] {
 		border-left-color: var(--accent);
-		color: var(--ink);
+		color: var(--accent-ink);
+		font-weight: 650;
+	}
+
+	.sub a[aria-current='location'] {
 		font-weight: 600;
 	}
 </style>

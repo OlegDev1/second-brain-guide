@@ -398,6 +398,18 @@ samp {
 	white-space: break-spaces;
 }
 
+/* G6: «Источники» closes every chapter (`## Источники {#sources}`). The heading stays as is;
+   the lists under it are smaller and dimmer, links keep their colour. */
+.prose h2#sources ~ :not(h2, h3) {
+	font-size: var(--text-xs);
+	line-height: 1.5;
+	color: var(--muted);
+}
+
+.prose h2#sources ~ :not(h2, h3) li + li {
+	margin-top: 0.2rem;
+}
+
 .table-scroll {
 	overflow-x: auto;
 	border: 1px solid var(--line);
