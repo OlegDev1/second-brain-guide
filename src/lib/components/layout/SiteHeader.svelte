@@ -1,8 +1,8 @@
 <!--
   SiteHeader: top of the home and section pages: site name, the three tabs
   Гайд / Advanced / Справочник (catalog #17) and search.
-  Props: current (active section id, optional), themeSwitch = false (the theme switch
-  next to search; the home page uses it instead of the one in the footer).
+  Props: current (active section id, optional), themeSwitch = false (a one-icon theme
+  button next to search; the home page uses it instead of the switch in the footer).
 -->
 <script lang="ts">
 	import { SECTIONS } from '$lib/content';
@@ -36,8 +36,7 @@
 		</nav>
 		<div class="tools">
 			{#if themeSwitch}
-				<span class="theme narrow"><ThemeSwitch cycle /></span>
-				<span class="theme wide"><ThemeSwitch compact /></span>
+				<span class="theme"><ThemeSwitch cycle /></span>
 			{/if}
 			<button type="button" class="search" onclick={() => (search.open = true)} aria-label="Поиск">
 				<Icon name="search" />
@@ -152,8 +151,8 @@
 		display: flex;
 	}
 
-	.theme.wide {
-		display: none;
+	.theme :global(.cycle) {
+		color: var(--ink);
 	}
 
 	.search {
@@ -221,6 +220,18 @@
 			color: var(--muted);
 		}
 
+		/* Same frame as the search box beside it. */
+		.theme :global(.cycle) {
+			border: 1px solid var(--line);
+			background: var(--surface);
+			color: var(--muted);
+		}
+
+		.theme :global(.cycle:hover) {
+			background: var(--sunk);
+			color: var(--ink);
+		}
+
 		.search-label {
 			display: inline;
 			flex: 1;
@@ -236,16 +247,6 @@
 	@media (min-width: 768px) and (max-width: 1023.98px) {
 		.with-theme .search {
 			min-width: 10rem;
-		}
-	}
-
-	@media (min-width: 1024px) {
-		.theme.narrow {
-			display: none;
-		}
-
-		.theme.wide {
-			display: flex;
 		}
 	}
 </style>
