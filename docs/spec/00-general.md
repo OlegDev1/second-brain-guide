@@ -34,6 +34,7 @@ Link format: `/guide/05-git-github#anchor`. Navigation, breadcrumbs and previous
 - Headings: `##` for sections, `###` for subsections. Section titles are short (up to about 40 characters) and say the point, because they appear in the reading bar at the top of the page and in its section list.
 - Visuals: only components and tokens from the design system (`/design`, `docs/COMPONENTS.md`). No new colours or one-off styles. Dark theme is the default.
 - Colours carry meaning everywhere, in callouts and diagrams: blue — you, the coordinator, the main idea; violet — threads and agents; amber — tokens, cost, checks, important; green — done, `main`, tips; red — danger.
+- UI colours (polish wave, 2026-10-24; overrides the fixes wave's green «Промпт для старта» sidebar item and green Overview card): blue = where you are / what to click (open chapter, links, primary button, hover, the «Начни отсюда» card); green = done / finish (read checkmarks and chapter 15 only, which keeps green cards in grids). The flag icon is for chapter 15 only. No sidebar item has a border or outline.
 - From part 02 on, `docs/STYLE.md` holds voice decisions and short examples from the reference chapter; where it differs from this section, STYLE.md wins.
 
 ## Terminology — use exactly these Russian terms
