@@ -45,15 +45,25 @@
 
 		const update = () => {
 			frame = 0;
-			const bar = document.querySelector<HTMLElement>('.bar')?.offsetHeight ?? 44;
-			const line = bar + 24;
-			let current: string | undefined;
-			for (const el of targets) {
-				if (el.getBoundingClientRect().top <= line) current = el.id;
+			// A heading reached by an anchor link stops at the scroll padding, so it counts
+			// as on screen from there (plus a little slack for rounding).
+			const pad = parseFloat(getComputedStyle(document.documentElement).scrollPaddingTop);
+			const line = (Number.isNaN(pad) ? 60 : pad) + 8;
+			let index = -1;
+			for (const [i, el] of targets.entries()) {
+				if (el.getBoundingClientRect().top <= line) index = i;
 				else break;
 			}
-			active = current;
 			const max = document.documentElement.scrollHeight - window.innerHeight;
+			// At the end of the page the last headings cannot reach the top, so a linked one
+			// that is visible wins.
+			if (max > 0 && window.scrollY >= max - 2 && location.hash) {
+				const hashed = targets.findIndex((el) => `#${el.id}` === decodeURIComponent(location.hash));
+				if (hashed > index && targets[hashed].getBoundingClientRect().top < window.innerHeight) {
+					index = hashed;
+				}
+			}
+			active = targets[index]?.id;
 			progress = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 1;
 			// A page that fits on one screen cannot be "scrolled to the end", so it is never marked.
 			if (max > 0 && progress > 0.97 && !stub) readMarks.mark(key);
@@ -66,10 +76,12 @@
 		update();
 		window.addEventListener('scroll', schedule, { passive: true });
 		window.addEventListener('resize', schedule);
+		window.addEventListener('hashchange', schedule);
 		return () => {
 			cancelAnimationFrame(frame);
 			window.removeEventListener('scroll', schedule);
 			window.removeEventListener('resize', schedule);
+			window.removeEventListener('hashchange', schedule);
 		};
 	});
 </script>
