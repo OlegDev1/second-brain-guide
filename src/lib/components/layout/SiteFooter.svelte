@@ -1,14 +1,17 @@
 <!--
-  SiteFooter: site name and the theme switch. No props.
+  SiteFooter: site name and the theme switch.
+  Props: themeSwitch = true (false where the header already has it).
 -->
 <script lang="ts">
 	import ThemeSwitch from './ThemeSwitch.svelte';
+
+	let { themeSwitch = true }: { themeSwitch?: boolean } = $props();
 </script>
 
 <footer class="site-footer">
 	<div class="inner">
 		<p>Второй мозг с командой агентов Claude</p>
-		<ThemeSwitch />
+		{#if themeSwitch}<ThemeSwitch />{/if}
 	</div>
 </footer>
 

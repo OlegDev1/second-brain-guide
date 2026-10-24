@@ -211,6 +211,7 @@
 html {
 	-webkit-text-size-adjust: 100%;
 	text-size-adjust: 100%;
+	/* The one anchor offset for the whole site; ChapterShell reads it to pick the active heading. */
 	scroll-padding-top: calc(var(--bar-h) + 1rem);
 }
 
@@ -339,11 +340,6 @@ samp {
 .prose * + ol,
 .prose * + blockquote {
 	margin-top: 1rem;
-}
-
-.prose h2,
-.prose h3 {
-	scroll-margin-top: calc(var(--bar-h) + 1rem);
 }
 
 .prose h2 {

@@ -1,7 +1,8 @@
 <!--
   SiteHeader: top of the home and section pages: site name, the three tabs
   Гайд / Advanced / Справочник (catalog #17) and search.
-  Props: current (active section id, optional).
+  Props: current (active section id, optional), themeSwitch = false (the theme switch
+  next to search; the home page uses it instead of the one in the footer).
 -->
 <script lang="ts">
 	import { SECTIONS } from '$lib/content';
@@ -9,12 +10,13 @@
 	import { search } from '$lib/search.svelte';
 	import type { SectionId } from '$lib/types';
 	import Icon from './Icon.svelte';
+	import ThemeSwitch from './ThemeSwitch.svelte';
 
-	let { current }: { current?: SectionId } = $props();
+	let { current, themeSwitch = false }: { current?: SectionId; themeSwitch?: boolean } = $props();
 </script>
 
 <header class="site">
-	<div class="inner">
+	<div class={['inner', { 'with-theme': themeSwitch }]}>
 		<a class="brand" href={href('/')}>
 			<span class="logo" aria-hidden="true">
 				<span class="dot blue"></span><span class="dot violet"></span><span class="dot green"></span>
@@ -32,11 +34,17 @@
 				{/each}
 			</ul>
 		</nav>
-		<button type="button" class="search" onclick={() => (search.open = true)} aria-label="Поиск">
-			<Icon name="search" />
-			<span class="search-label">Поиск</span>
-			<kbd>/</kbd>
-		</button>
+		<div class="tools">
+			{#if themeSwitch}
+				<span class="theme narrow"><ThemeSwitch cycle /></span>
+				<span class="theme wide"><ThemeSwitch compact /></span>
+			{/if}
+			<button type="button" class="search" onclick={() => (search.open = true)} aria-label="Поиск">
+				<Icon name="search" />
+				<span class="search-label">Поиск</span>
+				<kbd>/</kbd>
+			</button>
+		</div>
 	</div>
 </header>
 
@@ -70,6 +78,7 @@
 		font-size: 0.9375rem;
 		font-weight: 600;
 		text-decoration: none;
+		white-space: nowrap;
 	}
 
 	.logo {
@@ -132,8 +141,22 @@
 		border-bottom-color: var(--accent);
 	}
 
-	.search {
+	.tools {
 		grid-area: search;
+		display: flex;
+		align-items: center;
+		gap: 0.25rem;
+	}
+
+	.theme {
+		display: flex;
+	}
+
+	.theme.wide {
+		display: none;
+	}
+
+	.search {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
@@ -173,6 +196,10 @@
 			min-height: 3.5rem;
 		}
 
+		.tools {
+			gap: 0.5rem;
+		}
+
 		nav {
 			margin: 0;
 		}
@@ -202,6 +229,23 @@
 
 		kbd {
 			display: inline;
+		}
+	}
+
+	/* Room for the theme button so the section tabs are not clipped on tablets. */
+	@media (min-width: 768px) and (max-width: 1023.98px) {
+		.with-theme .search {
+			min-width: 10rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.theme.narrow {
+			display: none;
+		}
+
+		.theme.wide {
+			display: flex;
 		}
 	}
 </style>

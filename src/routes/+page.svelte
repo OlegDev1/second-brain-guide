@@ -76,7 +76,7 @@
 	/>
 </svelte:head>
 
-<SiteHeader />
+<SiteHeader themeSwitch />
 
 <main id="content" class="home">
 	<section class="hero">
@@ -203,7 +203,7 @@
 	</section>
 </main>
 
-<SiteFooter />
+<SiteFooter themeSwitch={false} />
 
 <style>
 	.home {
