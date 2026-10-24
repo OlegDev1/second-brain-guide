@@ -80,7 +80,6 @@
 
 <main id="content" class="home">
 	<section class="hero">
-		<p class="eyebrow">Гайд</p>
 		<h1>Второй мозг с&nbsp;командой агентов Claude</h1>
 		<p class="lead">
 			Как собрать своё приложение «второй мозг» с командой агентов Claude — и понять, почему
@@ -94,10 +93,6 @@
 			{/if}
 			<a class="btn" href="#learn">Библиотека знаний</a>
 		</div>
-		<p class="how">
-			Первая кнопка ведёт по шагам от идеи до готового приложения. Вторая — в библиотеку: проекты
-			Claude, инструменты, термины и всё остальное по темам.
-		</p>
 	</section>
 
 	<section class="road" id="road" aria-labelledby="road-title">
@@ -217,7 +212,6 @@
 		max-width: 46rem;
 	}
 
-	.eyebrow,
 	.kicker {
 		margin: 0 0 0.75rem;
 		color: var(--accent-ink);
@@ -238,24 +232,18 @@
 		font-size: 1.125rem;
 	}
 
-	.how {
-		margin: 1rem 0 0;
-		color: var(--muted);
-		font-size: var(--text-small);
-	}
-
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
 		gap: 0.75rem;
-		margin-top: 1.25rem;
+		margin-top: 1.5rem;
 	}
 
 	.btn {
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
-		min-height: var(--tap);
+		min-height: 3rem;
 		padding: 0 1.2rem;
 		border: 1px solid var(--line-strong);
 		border-radius: var(--radius);
