@@ -9,8 +9,8 @@ No PR and no merge until John says so.
 | Step | Status | Next |
 | --- | --- | --- |
 | 1. Study the project | done (2026-10-25) | — |
-| 2. Questions to the coordinator | sent, waiting | apply answers below |
-| 3. Gap report and critique | not started | |
+| 2. Questions to the coordinator | answered; 1, 6, 10, 11, 13 pending John | apply John's answers |
+| 3. Gap report and critique | done | |
 | 4. Template v1 | not started | |
 | 5. Rounds with John | not started | |
 
@@ -160,18 +160,130 @@ From the coordinator and the git history:
 
 ## Step 2. Questions and answers
 
-Sent to the coordinator on 2026-10-25. Answers go under each question.
+Sent to the coordinator on 2026-10-25 (13 questions). Answered by the coordinator at 04:40; questions 1, 6, 10
+(why), 11 and 13 forwarded to John — pending.
 
-1. **Project instructions size.** The current text is 1,810 characters. John remembers them as large. Was an earlier version longer (for the first build)? If so, its size and what was cut. Which lines mattered most in practice?
-2. **Polish wave brief.** PRs #21/#22 ran a polish wave, but only one line of it is in `00-general.md`. Was that brief saved anywhere? Was it one builder + one reviewer?
-3. **Issues back to the builder.** In the fixes and polish waves, did any reviewer send issues back? If yes: did you reopen the resolved builder thread (message it) or start a new builder thread with the list? Reviewers also committed small fixes themselves (PRs #17, #19): is that allowed, and where is the line between "fix it yourself" and "send back"?
-4. **Checkpoints and limits.** Did any thread hit a usage limit or context limit and need a fresh thread? If so, what did the fresh thread read to resume? Was "commit and push work in progress regularly" the only checkpoint rule?
-5. **Coordinator's internal files.** Since you never edit files, which thread updates `INDEX.md` and the wave section, and who should flip `PROGRESS.md` rows to "done" after John merges (they are stale now)? Do you keep anything outside the repo (Library, project files)?
-6. **Reviewer report location.** First build: `docs/reviews/NN.md`. Later: PR body only. Which one does John want in the template?
-7. **Builder → reviewer handoff.** Builders appended a "<wave> (date)" section to their notes file as the changelog for the reviewer. Is that the intended channel, or did you pass the builder's final report in your instructions block?
-8. **Models in settings.** What are Coordinator model/effort and Thread model/effort in Project settings here? How was Sonnet chosen for reviewer threads: per spawn by you, or something else?
-9. **Waves and checks in the fixes wave.** How did you decide 5 builders? When did you send the final report: after all reviewers opened PRs? Were cross-file leftovers (e.g. stale links in `glossary.ts`, `troubleshooting.md`) fixed in that wave or left?
-10. **Failures.** Besides the three you listed: why were Haiku, two-checker reviews, reviewer merges and wave gates dropped (cost, speed, quality)? Anything else that went wrong (stalled threads, wrong branch base, an agent inventing facts)?
-11. **Brief language.** John's fixes-wave brief was in English. Does John always write briefs in English, or may he write in Russian and the coordinator saves an English version?
-12. **Project memory.** Off here. Should the template assume memory off (files + Project instructions only), or use it for something specific?
-13. **Starter spec in the Library.** It is frozen at the pre-PR #4 version. Fine as "starter copy only", or should the template tell John to remove or replace it after the first PR?
+1. **Project instructions size; was an earlier version longer?** *Pending John.* Known: current text is
+   1,810 characters.
+2. **Polish wave brief.** Exists only as John's chat message; never saved to the repo. Only the override note in
+   `00-general.md`. One Opus builder, one Sonnet reviewer.
+3. **Issues back to the builder.** Never exercised in the fixes or polish waves. Reviewer instructions allowed
+   "trivial fixes yourself, list anything bigger so it goes back to the builder". In practice: small wording,
+   TL;DR or CSS fixes inside the branch's own files. Plan for a send-back: message the resolved builder thread
+   (that reopens it).
+4. **Checkpoints and limits.** No thread hit a limit as far as the coordinator knows. "Commit and push WIP" was the
+   only checkpoint rule.
+5. **Coordinator's files.** Builder 1 of the fixes wave updated INDEX, 00-general and PROGRESS on instruction.
+   Nobody flips PROGRESS rows to done after a merge (real gap). Outside the repo: Project instructions and the
+   Library spec copy only.
+6. **Reviewer report location.** *Pending John.*
+7. **Builder → reviewer handoff.** The coordinator passed the builder's report (branch, summary, flags) in the
+   reviewer's instructions. Notes files were secondary.
+8. **Models.** Set per spawn: Opus high for builders, Sonnet high for reviewers. Project-level defaults not
+   visible to the coordinator.
+9. **Fixes wave.** Five builders because John made speed the priority and files split cleanly. Final report
+   after all five PRs were open. Cross-file leftovers (glossary, troubleshooting, ch. 10, phrases) were routed
+   to the reviewer that owned those files and fixed in PR #18.
+10. **Why rules were dropped.** Haiku: John dropped it explicitly. Two checkers, reviewer merges, wave gates:
+    *pending John*. Extra known failure: the claim "agents message each other" in ch. 07 was unsourced.
+11. **Brief language.** *Pending John.*
+12. **Memory.** Off. Template assumes files + Project instructions only.
+13. **Library starter spec.** *Pending John.*
+
+---
+
+## Step 3. Gap report and critique
+
+Draft vs real project. "Draft" = Appendix A (= the published `starter-prompt.txt`, Russian, identical in content;
+chapter 15 imports that file, so page and draft are the same text line by line).
+
+### a) In the project, missing from the draft
+
+1. A full file map beyond spec/: `STYLE.md`, `DECISIONS.md`, `COMPONENTS.md`, `docs/parts/` notes, `docs/reviews/`,
+   `docs/spec/waves/`.
+2. Numbered global rules (G1…Gn) and task IDs, so instructions cite them; overrides by a dated "this section wins"
+   line.
+3. The coordinator's role and limits: only orchestrates, never edits files, decides parallelism, sends a short
+   final report per wave.
+4. The coordinator's task message format (instructions block: task IDs, rules, owned files, branch, check, report,
+   "say what is missing and stop") — and passing the builder's report to the reviewer.
+5. Shared files owned by one thread per wave; an explicit shared-files list.
+6. Order inside the first build: skeleton first and alone (owns all shared components), a reference part that
+   fixes style before others copy it, a wrap-up part last that alone may touch every file (terms, links).
+7. Reviewer details: fresh thread, flags only what breaks work or requirements, may fix trivial things in the
+   branch's own files, opens the PR because the PR-opener watches the PR (cheaper on Sonnet).
+8. Later waves: briefs saved verbatim in `docs/spec/waves/`, no part files needed (the instructions block is the
+   task).
+9. Sources table in notes for fact-heavy content (claim, place, URL, date, locator).
+10. Deploy automation after merge.
+11. Lessons from failures: verify PR head before conflict fixes; brief on main before reviewers need it; no new
+    commits on a PR'd branch.
+
+### b) In the draft, different from the project
+
+| Draft says | Project does | Which is right |
+| --- | --- | --- |
+| Reviewer checks "against the acceptance criteria" | Also logic/consistency with the repo, 1–2 checks per interactive element, layout look; may fix trivial things | Project (superset) |
+| Short tests for randomness, time, reminders | No tests at all; build only | Both, by project type: one rule in d) |
+| "No CI at the start" | Deploy workflow on every push to main | Project: deploy ≠ test CI |
+| Thread updates PROGRESS "at the end of the task" | Same, but nobody flips rows after merge, rows go stale | Neither: fix in d) |
+| Thread reads "only 00-general and its part file" | Also CLAUDE.md (auto), STYLE.md, its PROGRESS row; later waves read the instructions block instead of a part file | Project |
+| 16,000 / 80 lines as size targets | 1,810 chars, 29 lines | See d) |
+| `00-general` holds "how the agents work" | Workflow lives in Project instructions and 00-general (duplicated) | Proposal in d) |
+| First message: "propose a scaffold plan" | Part 01 did copy spec, create docs and build the skeleton in one PR | Draft is safer (owner checks the kit first); keep the draft |
+
+### c) Project-specific, must be generalised
+
+- Chapters, slugs, part names, Advanced section, chapter 15 green highlight → "parts", "pages/screens".
+- Svelte 5 runes, mdsvex, `npm run check`, design tokens in `src/app.css` → "[stack rules]", "[commands]".
+- Russian «ты» voice, «Глубже», TL;DR, STYLE reference decisions → content-project STYLE.md; code conventions for apps.
+- "Second brain" features (Inbox, «Выбери за меня», focus timer) → marked examples only.
+- Reader personas (the friend, the author) → "users / readers" block in the interview.
+- Library sources (PDF deck, HTML) → "source materials, cited by part files".
+- "Opus 5.5" → "Opus" (model versions change); effort names checked in the UI.
+- GitHub Pages / `paths.base` → "deploy target".
+- Part 10's glossary/terminology pass → generic "wrap-up part".
+
+### d) Critique and proposals
+
+1. **CLAUDE.md "up to 80 lines".** Ours: 29 lines and it was enough. Anthropic's ceiling is 200; every line is read
+   on every step. **Confirm 80 as a hard ceiling, aim for ~30–40.** Rule for each line: "would an agent make a
+   mistake without it?"
+2. **Project instructions "up to 16,000".** 16,000 is the real product limit (Projects docs page). We used 1,810
+   (11%), not "large". They go to the coordinator and every thread, so they cost like CLAUDE.md. **Proposal: aim
+   for 2,000–4,000 characters, never above ~6,000; 16,000 is the limit, not a target.** What to build goes to
+   `docs/spec/`, not there.
+3. **One home for the workflow.** Today the workflow sits in Project instructions and again in `00-general.md`.
+   Two copies drift (ours did: 00-general kept "reviewer merges" text until the fixes wave overrode it).
+   **Proposal: full team workflow lives in Project instructions; 00-general keeps a 5-line summary that points
+   there.**
+4. **Tests — one rule for apps and sites.** "Tests only where a person can't see the bug by looking: randomness,
+   time and dates, timers and reminders, calculations, data migrations. The part file marks such acceptance
+   criteria `[test]`. The builder writes and runs a short test only for those; everything else needs a passing
+   build plus the reviewer's quick checks. A site with no `[test]` criteria has no tests." It covers both: our
+   site had zero `[test]` criteria; the second-brain app would have a few.
+5. **CI.** Deploy automation (publish on merge to main) is fine and separate; one task adds it when the owner asks,
+   and nobody else touches it. Test CI: none at the start. Proposal (later, optional): when `[test]` tests exist,
+   one CI job that runs only them.
+6. **PROGRESS goes stale.** Proposal: statuses `not started / building / in review / PR open / merged`; the reviewer
+   sets "PR open #N"; the thread that owns `docs/spec` in the next wave flips merged rows as its first commit.
+   PROGRESS stays one table (one row per thread = no conflicts); "tried and failed" goes into the part's notes
+   (Troubleshooting), "how to run" into CLAUDE.md commands. Free-form shared sections would bring back conflicts.
+7. **Checkpoints.** Ch. 09: a thread that hits a usage limit waits and continues by itself, and long threads compact
+   on their own. A fresh thread is needed only when a thread was stopped, its machine is gone, or after the
+   restart rule. Checkpoints still matter (uncommitted work can be lost), but **at meaningful stops only**:
+   commit, push, PROGRESS row (last step → next step). Notes files get a Checkpoint line only for long tasks.
+8. **Brief on main first.** The wave brief and new G-rules go in a tiny PR of their own, opened first; until it is
+   merged the coordinator pastes the needed rules into each instructions block (reviewers too).
+9. **"Plan first" vs "nobody waits".** The fixes wave started without OK on purpose. Proposal: plan-first only for
+   tasks marked so in INDEX (data model, architecture, migrations, big restructures); the builder sends the plan
+   to the coordinator, which approves it inside the spec or asks the owner if it changes the goal.
+10. **Send-back path.** Never exercised, so define it: the coordinator messages the resolved builder thread with
+    the reviewer's list (cheaper than a new builder: it already has the context); the same reviewer re-checks only
+    those items. A new builder thread only under the restart rule.
+11. **"Agents message each other".** Unsourced in ch. 07; in the kit, routing goes through the coordinator, which
+    is what actually happened.
+12. **Reviewer report.** Pending John (q6). Proposal: the PR body is the report (where John reads it); a
+    `docs/reviews/` file only when the review leaves open items for later threads.
+13. **00-general size.** Ours grew to 146 lines / 12 KB and every thread reads it. Proposal: ceiling ~150 lines;
+    long reference tables (slug maps, glossaries) go to their own file that only the parts needing them read.
