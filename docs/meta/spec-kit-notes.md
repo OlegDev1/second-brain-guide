@@ -9,9 +9,9 @@ No PR and no merge until John says so.
 | Step | Status | Next |
 | --- | --- | --- |
 | 1. Study the project | done (2026-10-25) | — |
-| 2. Questions to the coordinator | answered; 1, 6, 10, 11, 13 pending John | apply John's answers |
+| 2. Questions to the coordinator | done | — |
 | 3. Gap report and critique | done | |
-| 4. Template v1 | not started | |
+| 4. Template v1 | done (`spec-kit-prompt.md`) | send round 1 |
 | 5. Rounds with John | not started | |
 
 A fresh thread resumes by reading this file top to bottom, then `git log` of this branch.
@@ -160,11 +160,11 @@ From the coordinator and the git history:
 
 ## Step 2. Questions and answers
 
-Sent to the coordinator on 2026-10-25 (13 questions). Answered by the coordinator at 04:40; questions 1, 6, 10
-(why), 11 and 13 forwarded to John — pending.
+Sent to the coordinator on 2026-10-25 (13 questions). Answered by the coordinator at 04:40 and by John (via the
+coordinator) at 04:44. John confirmed the goal: a prompt that produces the same kit he uploaded to this project.
 
-1. **Project instructions size; was an earlier version longer?** *Pending John.* Known: current text is
-   1,810 characters.
+1. **Project instructions size; was an earlier version longer?** John (04:44): no info on a longer version; the
+   instructions must have the same shape as this project's. Current text, 1,810 characters, is the model.
 2. **Polish wave brief.** Exists only as John's chat message; never saved to the repo. Only the override note in
    `00-general.md`. One Opus builder, one Sonnet reviewer.
 3. **Issues back to the builder.** Never exercised in the fixes or polish waves. Reviewer instructions allowed
@@ -176,7 +176,7 @@ Sent to the coordinator on 2026-10-25 (13 questions). Answered by the coordinato
 5. **Coordinator's files.** Builder 1 of the fixes wave updated INDEX, 00-general and PROGRESS on instruction.
    Nobody flips PROGRESS rows to done after a merge (real gap). Outside the repo: Project instructions and the
    Library spec copy only.
-6. **Reviewer report location.** *Pending John.*
+6. **Reviewer report location.** John has no preference; I chose the PR body (see d12).
 7. **Builder → reviewer handoff.** The coordinator passed the builder's report (branch, summary, flags) in the
    reviewer's instructions. Notes files were secondary.
 8. **Models.** Set per spawn: Opus high for builders, Sonnet high for reviewers. Project-level defaults not
@@ -185,10 +185,11 @@ Sent to the coordinator on 2026-10-25 (13 questions). Answered by the coordinato
    after all five PRs were open. Cross-file leftovers (glossary, troubleshooting, ch. 10, phrases) were routed
    to the reviewer that owned those files and fixed in PR #18.
 10. **Why rules were dropped.** Haiku: John dropped it explicitly. Two checkers, reviewer merges, wave gates:
-    *pending John*. Extra known failure: the claim "agents message each other" in ch. 07 was unsourced.
-11. **Brief language.** *Pending John.*
+    John: the Haiku checkers didn't work well; quality comes first, speed second, and speed must never cost quality.
+    The coordinator can't see why reviewer merges and gates were dropped. Extra known failure: the claim "agents message each other" in ch. 07 was unsourced.
+11. **Brief language.** Unanswered; template allows either, the docs/spec owner saves an English version.
 12. **Memory.** Off. Template assumes files + Project instructions only.
-13. **Library starter spec.** *Pending John.*
+13. **Library starter spec.** Keep it as a starter copy; the recap explains in one line what it is.
 
 ---
 
@@ -250,8 +251,8 @@ chapter 15 imports that file, so page and draft are the same text line by line).
    on every step. **Confirm 80 as a hard ceiling, aim for ~30–40.** Rule for each line: "would an agent make a
    mistake without it?"
 2. **Project instructions "up to 16,000".** 16,000 is the real product limit (Projects docs page). We used 1,810
-   (11%), not "large". They go to the coordinator and every thread, so they cost like CLAUDE.md. **Proposal: aim
-   for 2,000–4,000 characters, never above ~6,000; 16,000 is the limit, not a target.** What to build goes to
+   (11%), not "large". They go to the coordinator and every thread, so they cost like CLAUDE.md. **Proposal: same
+   shape as ours, aim for 1,500–3,500 characters; 16,000 is the limit, not a target.** What to build goes to
    `docs/spec/`, not there.
 3. **One home for the workflow.** Today the workflow sits in Project instructions and again in `00-general.md`.
    Two copies drift (ours did: 00-general kept "reviewer merges" text until the fixes wave overrode it).
@@ -283,7 +284,15 @@ chapter 15 imports that file, so page and draft are the same text line by line).
     those items. A new builder thread only under the restart rule.
 11. **"Agents message each other".** Unsourced in ch. 07; in the kit, routing goes through the coordinator, which
     is what actually happened.
-12. **Reviewer report.** Pending John (q6). Proposal: the PR body is the report (where John reads it); a
+12. **Reviewer report.** John has no preference. Chosen: the PR body is the report (where John reads it); a
     `docs/reviews/` file only when the review leaves open items for later threads.
 13. **00-general size.** Ours grew to 146 lines / 12 KB and every thread reads it. Proposal: ceiling ~150 lines;
     long reference tables (slug maps, glossaries) go to their own file that only the parts needing them read.
+
+---
+
+## Round log
+
+| Round | Date | What changed |
+| --- | --- | --- |
+| v1 | 2026-10-25 | First template from the real project: method (principles, roles, flow, waves, checks, instructions block, checkpoints, settings, file map), deliverables 1–5 with zip layout and file shapes, pre-zip check. Applied John's answers: quality first, Project instructions in our shape (~1,500–3,500 chars), briefs in either language saved in English, Library copy explained in the recap. |
