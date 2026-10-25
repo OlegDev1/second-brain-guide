@@ -3,7 +3,9 @@
   Copy always copies the whole text, collapsed or not. The collapsed view is tall enough
   to show the first lines, so the reader sees where to fill in their own details.
   Props: text (exactly what gets copied), title, when (optional),
-  fields (optional: how many leading lines are fill-in lines; their [brackets] are highlighted).
+  fields (optional: how many leading lines are fill-in lines; they are numbered and highlighted
+  like PromptFields, their [brackets] outlined), hint (optional: one line above the text
+  that tells the reader what to fill in).
 -->
 <script lang="ts">
 	import { copyText } from '$lib/clipboard';
@@ -13,8 +15,9 @@
 		text,
 		title,
 		when,
-		fields = 0
-	}: { text: string; title?: string; when?: string; fields?: number } = $props();
+		fields = 0,
+		hint
+	}: { text: string; title?: string; when?: string; fields?: number; hint?: string } = $props();
 
 	const id = $props.id();
 
@@ -78,10 +81,15 @@
 		</div>
 	</header>
 
+	{#if hint}
+		<p class="hint"><Icon name="info" size={16} /><span>{hint}</span></p>
+	{/if}
+
 	<div class="body" class:open id="{id}-body">
-		<pre class="text">{#each head as parts}{#each parts as part}{#if part.startsWith('[')}<mark
-							class="slot">{part}</mark
-						>{:else}{part}{/if}{/each}{'\n'}{/each}{rest}</pre>
+		<pre class="text">{#each head as parts}<span class="field"
+					>{#each parts as part}{#if part.startsWith('[')}<mark class="slot">{part}</mark
+							>{:else}{part}{/if}{/each}</span
+				>{/each}{rest}</pre>
 	</div>
 
 	{#if open || when}
@@ -211,12 +219,64 @@
 		overflow-wrap: anywhere;
 	}
 
+	.hint {
+		display: flex;
+		gap: 0.5rem;
+		margin: 0;
+		padding: 0.55rem 1.1rem;
+		border-bottom: 1px solid var(--line);
+		color: var(--blue-ink);
+		font-size: var(--text-small);
+		line-height: 1.5;
+	}
+
+	.hint :global(.icon) {
+		flex: none;
+		margin-top: 0.15rem;
+	}
+
+	/* Fill-in lines: a numbered band each, the same badge as in PromptFields. */
+	.text {
+		counter-reset: field;
+	}
+
+	.field {
+		position: relative;
+		display: block;
+		margin: 0 -0.5rem 0.3rem;
+		padding: 0.3rem 0.5rem 0.3rem 2.2rem;
+		border-radius: 6px;
+		background: var(--blue-soft);
+		box-shadow: inset 0 0 0 1px var(--blue);
+		color: var(--blue-ink);
+		font-weight: 600;
+	}
+
+	.field::before {
+		counter-increment: field;
+		content: counter(field);
+		position: absolute;
+		top: 0.3rem;
+		left: 0.5rem;
+		display: grid;
+		place-items: center;
+		width: 1.3rem;
+		height: 1.3rem;
+		border-radius: 5px;
+		background: var(--blue);
+		color: var(--surface);
+		font-family: var(--font-body);
+		font-weight: 700;
+		line-height: 1;
+	}
+
 	.slot {
 		padding: 0.05rem 0.2rem;
 		border-radius: 4px;
 		outline: 1px dashed var(--blue);
-		background: var(--blue-soft);
-		color: var(--blue-ink);
+		background: none;
+		color: var(--ink);
+		font-weight: 400;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
