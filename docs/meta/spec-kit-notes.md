@@ -12,7 +12,7 @@ No PR and no merge until John says so.
 | 2. Questions to the coordinator | done | — |
 | 3. Gap report and critique | done | |
 | 4. Template v1 | done (`spec-kit-prompt.md`) | send round 1 |
-| 5. Rounds with John | v3 + skill proposed | wait for John's edits |
+| 5. Rounds with John | public prompt handed to the coordinator for chapter 15 | wait for John |
 
 A fresh thread resumes by reading this file top to bottom, then `git log` of this branch.
 
@@ -298,3 +298,4 @@ chapter 15 imports that file, so page and draft are the same text line by line).
 | v1 | 2026-10-25 | First template from the real project: method (principles, roles, flow, waves, checks, instructions block, checkpoints, settings, file map), deliverables 1–5 with zip layout and file shapes, pre-zip check. Applied John's answers: quality first, Project instructions in our shape (~1,500–3,500 chars), briefs in either language saved in English, Library copy explained in the recap. |
 | v2 | 2026-10-25 | John asked whether a skill beats a pasted prompt, whether it works for a website, and whether "just the features" is enough. Added: interview block 0 (project type and team), "propose a default, I confirm" interview rule, per-part team overrides in INDEX and part headers, full fixed Project instructions text (3,261 chars unfilled; aim now 2,000–4,000 filled), section 2.9 "fixed vs generated". His pasted Russian text is the old draft (= starter-prompt.txt), already covered by v1; nothing new to fold in. SearchSkills found no spec/kit skill in his account; proposed packaging the template as a personal skill. |
 | v3 | 2026-10-25 | John: is it a skill, can he dictate 6,000–10,000 words, does it fit any project type. Added: long-dump handling (summary by block + gaps first), zip fallback when the chat can't run code. Drafted a SKILL.md version (name `project-kit`) and proposed it to John as a saveable skill. Web research on similar skills runs in a separate thread started by the coordinator. |
+| public | 2026-10-25 | John dropped the skill/kit download: prompt only, in English, published in chapter 15. Public version added at the end of `spec-kit-prompt.md` (and `/mnt/project-files/meta/starter-prompt-en.txt`): placeholders on the first three lines, conversation in the user's language, no references to this project. A Russian draft was written first and dropped after John asked for English. Chapter 15 rework handed to the coordinator for a separate builder thread. |
