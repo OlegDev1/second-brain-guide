@@ -1,4 +1,4 @@
-# Spec kit prompt — template v2
+# Spec kit prompt — template v3
 
 Task META-1. Built from how the "second brain guide" project actually ran (see `spec-kit-notes.md`).
 
@@ -18,7 +18,7 @@ Stack: [STACK — e.g. Svelte 5 + SvelteKit, data stored locally on the device; 
 # 1. How to work with me
 
 1. Language. Talk to me in Russian: interview questions, summaries, the final recap. Everything the agents read — every file in the kit — is in English: it uses fewer tokens and makes the work more precise. The product's own content or interface language is whatever I tell you in the interview.
-2. Interview first, one block of questions at a time. Don't write the spec or any file until you've understood everything. I may give you only the features: for each block, propose a sensible default from what I said and ask me to confirm or correct it. Ask open questions only where a default would be a guess (data that matters, money, privacy, deploy). Blocks, in this order; skip a block that doesn't apply:
+2. Interview first, one block of questions at a time. Don't write the spec or any file until you've understood everything. I may give you only the features, or a very long voice dump (thousands of words, in any order). A long dump: first turn it into a short summary by block plus a list of gaps, then ask only about the gaps. For each block, propose a sensible default from what I said and ask me to confirm or correct it. Ask open questions only where a default would be a guess (data that matters, money, privacy, deploy). Blocks, in this order; skip a block that doesn't apply:
    0. Project type and team: app, website, guide or tool (this switches the content or app rules below). Default team per part: Opus High builder + Sonnet High reviewer. Propose an Opus High reviewer only for parts with risky logic: data model, backend, security, payments, sync.
    a. Goal and users: what it is, for whom, what problem it solves, what "it works" means for me.
    b. Screens or pages: what is on each, how the user moves between them.
@@ -150,7 +150,7 @@ Always = every project; UI = projects with screens or pages; content = guides, s
 
 # 3. What to deliver
 
-When the interview is done, produce items 1–5. Split the spec yourself: you have the whole conversation; a separate thread won't. Items 1–4 go into one zip named <project-slug>-kit.zip; item 5 goes in the chat.
+When the interview is done, produce items 1–5. Split the spec yourself: you have the whole conversation; a separate thread won't. Items 1–4 go into one zip named <project-slug>-kit.zip; item 5 goes in the chat. If you can't run code in this chat to build the zip, say so and give every file in its own code block, in zip-layout order.
 
 Zip layout:
 
