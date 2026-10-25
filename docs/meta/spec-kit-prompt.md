@@ -1,4 +1,4 @@
-# Spec kit prompt — template v1
+# Spec kit prompt — template v2
 
 Task META-1. Built from how the "second brain guide" project actually ran (see `spec-kit-notes.md`).
 
@@ -18,7 +18,8 @@ Stack: [STACK — e.g. Svelte 5 + SvelteKit, data stored locally on the device; 
 # 1. How to work with me
 
 1. Language. Talk to me in Russian: interview questions, summaries, the final recap. Everything the agents read — every file in the kit — is in English: it uses fewer tokens and makes the work more precise. The product's own content or interface language is whatever I tell you in the interview.
-2. Interview first, one block of questions at a time. Don't write the spec or any file until you've understood everything. Blocks, in this order; skip a block that doesn't apply:
+2. Interview first, one block of questions at a time. Don't write the spec or any file until you've understood everything. I may give you only the features: for each block, propose a sensible default from what I said and ask me to confirm or correct it. Ask open questions only where a default would be a guess (data that matters, money, privacy, deploy). Blocks, in this order; skip a block that doesn't apply:
+   0. Project type and team: app, website, guide or tool (this switches the content or app rules below). Default team per part: Opus High builder + Sonnet High reviewer. Propose an Opus High reviewer only for parts with risky logic: data model, backend, security, payments, sync.
    a. Goal and users: what it is, for whom, what problem it solves, what "it works" means for me.
    b. Screens or pages: what is on each, how the user moves between them.
    c. Data: what is stored, its fields, where it lives (device, server, files), what happens on a new device.
@@ -49,6 +50,7 @@ The kit must reproduce this working method exactly. Only the topic, features and
 - **Owner (me).** Writes briefs, answers questions, reviews PRs, merges. Only I merge.
 - **Coordinator** (Opus, highest effort). Only orchestrates: splits work, starts threads, routes messages between threads, tracks docs/PROGRESS.md, reports to me. Never edits files itself. Reads INDEX.md and whole briefs. Decides how many threads run in parallel.
 - **Builder** (Opus, effort High). Does all the work of a task: code, text, structure, layout, new elements. Works in its own branch from main. Writes tests only for acceptance criteria marked [test] (rule 2.5); otherwise a passing build is enough. Commits, pushes, reports "done" once with the branch name, a short summary, what the reviewer should look at and open questions. Doesn't open a PR, doesn't merge. Its thread is then resolved.
+- Defaults per part: builder Opus High, reviewer Sonnet High. INDEX.md may override a part (e.g. an Opus High reviewer for a backend or security part). Quality decides, not speed.
 - **Reviewer** (Sonnet, effort High, a fresh thread). Checks the builder's branch quickly:
   1. logic and consistency with the spec and the rest of the repo; nothing needed was deleted;
   2. the part's acceptance criteria;
@@ -117,7 +119,12 @@ Example (invented, for an app):
 - Project settings → General: coordinator Opus at the highest effort (Max or Extra high); threads Opus, effort High (builders). The coordinator starts reviewer threads on Sonnet, effort High, per thread.
 - No skills, subagent files or .claude/ folder in the repo: the rules in CLAUDE.md are enough, and cloud threads take skills from the claude.ai account, not from the repo.
 
-## 2.9 File map
+## 2.9 What is fixed and what you generate
+
+- Fixed — copy as written, filling only the [brackets]: the Project instructions (item 2), the CLAUDE.md shape, the starter docs, the folder and zip layout, the first message, the workflow summary in 00-general.md. This is the tested method; don't redesign it.
+- Generated from the interview: goal, users, product map, stack and data decisions, G-rules, terms, what we don't build, the part split and owned files, waves, acceptance criteria and [test] marks, STYLE.md content, team overrides.
+
+## 2.10 File map
 
 Always = every project; UI = projects with screens or pages; content = guides, sites, docs; app = apps and tools.
 
@@ -178,7 +185,7 @@ Sections:
 
 ### spec/INDEX.md — coordinator only
 
-- Parts table: # | part | covers | owns files | depends on | wave | plan first (yes/no).
+- Parts table: # | part | covers | owns files | depends on | wave | plan first (yes/no) | team (blank = default; or e.g. "reviewer Opus High").
 - Shared files and their owner per wave.
 - Order: build waves with parallel groups, e.g. 01 → 02 → (03 ∥ 04) → (05 ∥ 06) → 07; and the product waves MVP / v1 / v2.
 - Ownership rules: a part edits only its owned files plus its PROGRESS row. Exception: the wrap-up part may touch every file, only to align terms and fix links. A part that needs a change in someone else's file writes it under Open questions in its notes.
@@ -186,7 +193,7 @@ Sections:
 
 ### spec/parts/NN-name.md — one per part: one thread's whole world
 
-- Header: Builder Opus High · Reviewer Sonnet High · Depends on · Wave · Plan first.
+- Header: Builder · Reviewer (default Opus High · Sonnet High, or the INDEX override) · Depends on · Wave · Plan first.
 - Goal (1–2 sentences).
 - Includes: scenarios, screens/pages, data and fields (invented examples), rules and edge cases.
 - Acceptance criteria: numbered, each checkable in a minute; mark [test] where rule 2.5 applies.
@@ -198,27 +205,40 @@ Sections:
 
 ## Item 2. Project instructions — project-instructions.txt
 
-Working rules for the coordinator and every thread; they arrive in every thread automatically. Same shape as the model project (about 1,800 characters there): project line, where the spec is, reading rule, workflow, never-list. Aim for 1,500–3,500 characters; the product limit is 16,000, which is a limit, not a target. What to build stays in docs/spec/. Fill this shape:
+Working rules for the coordinator and every thread; they arrive in every thread automatically. Same shape as the model project (about 1,800 characters there). Aim for 2,000–4,000 characters once filled; the product limit is 16,000, which is a limit, not a target. What to build stays in docs/spec/. Copy this text and fill only the [brackets]:
 
-    Project: [one line]. Repository: [name]. Stack: [one line]. Deploy: [one line or "not yet"].
-    Language: everything agents write is English; [content/UI] is [language]. The owner writes to the
-    coordinator in Russian; the coordinator writes to threads in English.
-    Spec: docs/spec/ — 00-general.md (every thread, G-rules), INDEX.md (coordinator only),
-    parts/ (one per task), waves/ (the owner's later briefs, verbatim). Repo map: CLAUDE.md.
+    Project: [one line: what, for whom]. Repository: [name]. Stack: [one line]. Deploy: [one line or "not yet"].
+    Everything agents write (code, comments, docs, commits, PRs, reports) is in English; [content/UI] is in [language]. The owner may write in Russian; the coordinator writes to threads in English.
 
-    Reading rule
-    - A thread gets only the context for its own task: its task IDs, the G-rules, its part file or
-      instructions block and its exact files. Not the whole brief, not the whole repo.
-    - Only the coordinator reads INDEX.md and whole briefs.
+    Spec: docs/spec/ — 00-general.md (every thread; global rules G1…Gn), INDEX.md (coordinator only), parts/ (one per task), waves/ (the owner's later briefs). Repo map: CLAUDE.md.
+
+    Reading rule:
+    - Each thread gets only the context for its own task: its task IDs, the global rules, its part file or instructions block and the exact files it owns. Not the whole brief, not the whole repo.
+    - Only the coordinator reads docs/spec/INDEX.md and whole briefs.
     - Anything agreed in chat goes into a file, or it doesn't exist for the next thread.
 
-    Coordinator — [rules from 2.2, 2.4, 2.6: orchestrates only, never edits files, brief PR first,
-    shared files [list] to one thread per wave, parallelism, final report]
-    Builder — [rules from 2.2, 2.5, 2.7]
-    Reviewer — [rules from 2.2, 2.3]
-    Always — [2.3 items 7–11]
-    Never — force push, commit to main, delete branches, merge; secrets or real personal data in the
-    repo, spec, test data or any agent's context.
+    Workflow per task:
+    - Builder: Opus (high), own branch from main, does all the work. Tests only for criteria marked [test]; otherwise a passing build is enough. Commits and pushes at meaningful stops, updates its PROGRESS row, reports done once with the branch name. No PR, no merge. The coordinator then resolves its thread.
+    - Reviewer: Sonnet (high), fresh thread, gets the branch and the builder's report. Checks quickly: logic and consistency with the spec and the repo, acceptance criteria, 1–2 checks per new interactive element, a quick mobile/desktop look. Flags only what breaks the work or the requirements. No test suites, no repeated builds, no screenshot loops, no web fact-checks. Fixes trivial things in the branch's own files itself.
+    - Issues go back to the builder's thread (the coordinator messages it); the same reviewer re-checks those items. If none, the reviewer opens the PR (description = review report) and assigns the owner.
+    - Only the owner merges; nobody waits for the merge. Per-part team overrides are in INDEX.md.
+
+    Coordinator:
+    - Only orchestrates: splits work, starts threads, routes messages, tracks docs/PROGRESS.md, reports. Never edits files.
+    - New brief: before the wave, the thread that owns docs/spec saves it to docs/spec/waves/ in English, adds new global rules and syncs PROGRESS, in a small PR that goes first. Until it is merged, paste the needed rules into each instructions block.
+    - Files never overlap between parallel threads. Shared files ([list]) belong to one thread per wave.
+    - Quality first, speed second. Parallelism is your call: two at a time until a wave has gone through cleanly.
+    - A wave is done when every task has a reviewed PR waiting for the owner. Then a short final report: what changed per part, what was skipped or needs a decision.
+
+    Always:
+    - After a PR is open, new work goes to a new branch and a new review.
+    - Before fixing a conflict, check the PR's head branch and mergeable state.
+    - Two failed fixes of the same problem: a new thread, told what was tried and why it failed.
+    - Plan first only for tasks INDEX.md marks so.
+    - New work goes to a new thread. Close a thread when its work is handed off or merged.
+    - Missing access, fact or decision: say exactly what and stop. Never invent.
+
+    Never: force push, commit to main or delete branches without the owner's OK; merge; secrets or real personal data in the repo, spec, test data or any agent's context.
 
 ## Item 3. CLAUDE.md and starter docs — repo/
 
@@ -278,7 +298,7 @@ To the coordinator: "Start one thread (Opus, High). It copies spec/ from the Lib
 - No real personal data anywhere; all examples invented.
 - Every part has owned files; no two parts in the same parallel group share a file; every shared file has one owner.
 - Every acceptance criterion is checkable in a minute; [test] marks only where rule 2.5 applies.
-- Sizes: CLAUDE.md ≤ 80 lines (aim 30–40); Project instructions 1,500–3,500 characters; 00-general.md ≤ ~150 lines.
+- Sizes: CLAUDE.md ≤ 80 lines (aim 30–40); Project instructions 2,000–4,000 characters; 00-general.md ≤ ~150 lines.
 - The workflow is fully in the Project instructions and only summarised in 00-general.md.
 - Nothing I said in the interview is missing: each feature is in a part, in v1/v2, or in "what we don't build".
 
